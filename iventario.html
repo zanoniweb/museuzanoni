@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVENTÁRIO NUMISMÁTICO COLEÇÃO ZANONI</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #1a2a3a; /* Azul Marinho Profissional */
+            --accent-color: #c5a059;  /* Dourado Numismático */
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .shortcut-list {
+            display: grid;
+            grid-template-columns: 1fr; /* Padrão celular */
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        /* Responsividade para Tablets e Desktop */
+        @media (min-width: 768px) {
+            .shortcut-list {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .shortcut-list button {
+            background: var(--white);
+            border: 1px solid #e0e0e0;
+            padding: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .shortcut-list button:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .shortcut-list b {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .total-card {
+            background: var(--white);
+            border-left: 5px solid var(--accent-color);
+            padding: 25px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.4rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .total-card b {
+            color: #27ae60; /* Verde para valor total */
+        }
+
+        .cta-link {
+            text-decoration: none;
+            display: block;
+        }
+
+        .scroll-indicator {
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .scroll-indicator:hover {
+            background: #b08d48;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Inventário Coleção Numismática Zanoni</h1>
+    </header>
+
+    <main>
+        <div class="shortcut-list">
+            <button type="button" onclick="pesquisaRapida('cobre')"><b>Moedas de Cobre</b> <span>R$ 36.040,00</span></button>
+            <button type="button" onclick="pesquisaRapida('prata')"><b>Moedas de Prata</b> <span>R$ 33.455,00</span></button>
+            <button type="button" onclick="pesquisaRapida('bronze')"><b>Moedas de Bronze</b> <span>R$ 1.875,00</span></button>
+            <button type="button" onclick="pesquisaRapida('niquel')"><b>Moedas de Níquel</b> <span>R$ 2.055,00</span></button>
+            <button type="button" onclick="pesquisaRapida('outros')"><b>Outros Metais</b> <span>R$ 1.252,00</span></button>
+            <button type="button" onclick="pesquisaRapida('real')"><b>Moedas do Real</b> <span>R$ 1.366,00</span></button>
+            <button type="button" onclick="pesquisaRapida('anomalas_2')"><b>Anômalas</b> <span>R$ 8.680,75</span></button>
+            <button type="button" onclick="pesquisaRapida('duplos')"><b>Cunhos Duplos</b> <span>R$ 17.580,00</span></button>
+            <button type="button" onclick="pesquisaRapida('real_venda')"><b>Acervo para Venda</b> <span>R$ 17.676,00</span></button>
+        </div>
+
+        <div class="total-card">
+            Total da Coleção: <b>R$ 116.672,75</b>
+        </div>
+
+        <a href="index.html" class="cta-link">
+            <div class="scroll-indicator">
+                Clique aqui para voltar a página inicial
+            </div>
+        </a>
+    </main>
+</div>
+
+</body>
+</html>

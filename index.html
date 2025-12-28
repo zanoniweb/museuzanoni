@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numismática Imperial | Coleção Exclusiva</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: #0a0a0a; 
+            color: #e0c097; 
+            font-family: 'Raleway', sans-serif; 
+            overflow-x: hidden; 
+        }
+
+        h1, h2, h3 { font-family: 'Cinzel', serif; }
+
+        .bg-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%); 
+            z-index: -1; 
+        }
+
+        header { 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            padding: 40px 20px; 
+        }
+
+        .hero-title { 
+            font-size: clamp(1.8rem, 8vw, 3.5rem); 
+            letter-spacing: 5px; 
+            text-transform: uppercase; 
+            background: linear-gradient(to bottom, #f3e5ab, #b8860b); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle { max-width: 800px; font-size: 1.1rem; line-height: 1.6; color: #ccc; }
+
+        .coin-gallery { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 40px; 
+            padding: 50px 20px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+
+        .coin-card { 
+            background: rgba(255, 255, 255, 0.03); 
+            border: 1px solid rgba(184, 134, 11, 0.2); 
+            padding: 30px 20px; 
+            border-radius: 20px; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: all 0.3s ease;
+        }
+
+        .coin-card:hover { 
+            transform: translateY(-10px); 
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(184, 134, 11, 0.5);
+        }
+
+        /* --- SISTEMA 3D --- */
+        .flip-container {
+            width: 200px; height: 200px;
+            margin: 0 auto 20px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .coin-card:hover .flip-container {
+            transform: rotateY(180deg);
+        }
+
+        .flipped {
+            transform: rotateY(180deg) !important;
+        }
+
+        .side {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(184, 134, 11, 0.3);
+        }
+
+        .side img { width: 100%; height: 100%; object-fit: cover; }
+        .reverso { transform: rotateY(180deg); }
+
+        /* --- MODAL & LUPA --- */
+        #modal-detalhes { 
+            display: none; 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0, 0, 0, 0.98); 
+            z-index: 2000; 
+            justify-content: center; 
+            align-items: center; 
+            backdrop-filter: blur(10px);
+            padding: 20px;
+        }
+
+        .modal-content { 
+            background: #111; 
+            border: 1px solid #b8860b; 
+            border-radius: 15px; 
+            max-width: 950px; 
+            width: 100%; 
+            max-height: 90vh;
+            padding: 40px; 
+            display: flex;
+            flex-direction: row;
+            gap: 40px; 
+            position: relative; 
+            overflow-y: auto;
+        }
+
+        @media (max-width: 850px) {
+            .modal-content { flex-direction: column; align-items: center; padding: 30px 20px; }
+        }
+
+        .magnifier-container {
+            position: relative;
+            width: 250px; height: 250px;
+            cursor: crosshair;
+            margin: 0 auto;
+        }
+
+        .magnifier-glass {
+            position: absolute;
+            display: none;
+            border: 2px solid #b8860b;
+            border-radius: 50%;
+            width: 150px; height: 150px;
+            pointer-events: none;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            z-index: 100;
+        }
+
+        .nav-arrows {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .arrow-btn {
+            background: rgba(184, 134, 11, 0.1);
+            border: 1px solid #b8860b;
+            color: #b8860b;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .arrow-btn:hover {
+            background: #b8860b;
+            color: #000;
+        }
+
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2.5rem; color: #b8860b; cursor: pointer; }
+
+        .tech-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .tech-table td { padding: 10px 0; border-bottom: 1px solid #222; }
+        .tech-label { color: #b8860b; font-weight: bold; font-size: 0.75rem; text-transform: uppercase; }
+        .tech-value { color: #fff; text-align: right; }
+        .tech-text { color: #ccc; font-size: 0.9rem; line-height: 1.6; }
+
+        .scroll-indicator {
+            text-align: center; color: white; animation: bounce 2s infinite; cursor: pointer; padding: 20px;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+        }
+
+        footer { padding: 40px; text-align: center; border-top: 1px solid #222; }
+        footer img { height: 30px; vertical-align: middle; margin-left: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="bg-overlay"></div>
+
+<header>
+    <h1 class="hero-title">Coleção Numismática Zanoni</h1>
+    <p class="hero-subtitle">Preservando a história através dos séculos do Brasil Colonial até o período Republicano. Uma curadoria privada da numismática brasileira.</p>
+    <br>
+    <div class="scroll-indicator">▼ Desça abaixo para explorar de forma interativa alguns exemplares da coleção.</div>
+</header>
+
+<main class="coin-gallery">
+
+    <div class="coin-card" 
+         data-historia="Cunhada em Lisboa para circulação no Brasil Colonial."
+         data-data="1768" data-facial="80 Réis" data-diametro="20,0 mm" data-peso="2,22 g" data-catalogo="Nº 175"
+         data-img-anv="imagens/1768anverso.jpg" 
+         data-img-rev="imagens/1768reverso.jpg">
+        <div class="flip-container">
+            <div class="side anverso"><img src="imagens/1768anverso.jpg" alt="Anverso"></div>
+            <div class="side reverso"><img src="imagens/1768reverso.jpg" alt="Reverso"></div>
+        </div>
+        <div class="coin-info">
+            <h3>D. José I (1752 ATÉ 1777)</h3>
+            <p>Brasil Colônia</p>
+        </div>
+    </div>
+
+    <div class="coin-card" 
+         data-historia="Cunhada em Lisboa para circulação no Brasil Colonial."
+         data-data="1778" data-facial="X Réis" data-diametro="30,0 mm" data-peso="6,0 g" data-catalogo="Nº 236"
+         data-img-anv="imagens/1778anverso.jpg" 
+         data-img-rev="imagens/1778reverso.jpg">
+        <div class="flip-container">
+            <div class="side anverso"><img src="imagens/1778anverso.jpg" alt="Anverso"></div>
+            <div class="side reverso"><img src="imagens/1778reverso.jpg" alt="Reverso"></div>
+        </div>
+        <div class="coin-info">
+            <h3>D. Pedro III & D. Maria I (1778 ATÉ 1784)</h3>
+            <p>Brasil Colônia</p>
+        </div>
+    </div>
+
+    <div class="coin-card" 
+         data-historia="Cunhada em Lisboa para circulação no Brasil Colonial."
+         data-data="1790" data-facial="XX Réis" data-diametro="37,0 mm" data-peso="14,5 g" data-catalogo="Nº 315"
+         data-img-anv="imagens/1790anverso.jpg" 
+         data-img-rev="imagens/1790reverso.jpg">
+        <div class="flip-container">
+            <div class="side anverso"><img src="imagens/1790anverso.jpg" alt="Anverso"></div>
+            <div class="side reverso"><img src="imagens/1790reverso.jpg" alt="Reverso"></div>
+        </div>
+        <div class="coin-info">
+            <h3>D. Maria I (1786 ATÉ 1799)</h3>
+            <p>Brasil Colônia</p>
+        </div>
+    </div>
+
+    <div class="coin-card" 
+         data-historia="Cunhada na provincia do Rio de Janeiro durante o período do Brasil Colonial."
+         data-data="1814" data-facial="XX Réis" data-diametro=" 28,0 mm" data-peso=" 4,8 g" data-catalogo="Nº 432"
+         data-img-anv="imagens/1814Ranverso.jpg" 
+         data-img-rev="imagens/1814Rreverso.jpg">
+        <div class="flip-container">
+            <div class="side anverso"><img src="imagens/1814Ranverso.jpg" alt="Anverso"></div>
+            <div class="side reverso"><img src="imagens/1814Rreverso.jpg" alt="Reverso"></div>
+        </div>
+        <div class="coin-info">
+            <h3>D. João, Principe Regente (1802 ATÉ 1818)</h3>
+            <p>Brasil Colônia</p>
+        </div>
+    </div>
+
+    <div class="coin-card" 
+         data-historia="Cunhada na provincia da Bahia durante o período do Brasil Reino, contudo, é um exemplar falso de época tendo como base uma moeda de 40 Réis do período imperial."
+         data-data="1821B" data-facial="LXXX Réis" data-diametro="34,0 mm" data-peso=" 13,0 g" data-catalogo="Nº 493"
+         data-img-anv="imagens/1821Banverso.jpg" 
+         data-img-rev="imagens/1821Breverso.jpg">
+        <div class="flip-container">
+            <div class="side anverso"><img src="imagens/1821Banverso.jpg" alt="Anverso"></div>
+            <div class="side reverso"><img src="imagens/1821Breverso.jpg" alt="Reverso"></div>
+        </div>
+        <div class="coin-info">
+            <h3>D. João VI (1818 ATÉ 1823)</h3>
+            <p>Brasil Reino Unido</p>
+        </div>
+    </div>
+
+    <div class="coin-card" 
+         data-historia="Cunhada na provincia do Rio de Janeiro durante o período do Brasil Imperial."
+         data-data="1823 R" data-facial="40 Réis" data-diametro="35,0 mm" data-peso="13,7 g" data-catalogo="Nº 595"
+         data-img-anv="imagens/1824Ranverso.jpg" 
+         data-img-rev="imagens/1824Rreverso.jpg">
+        <div class="flip-container">
+            <div class="side anverso"><img src="imagens/1824Ranverso.jpg" alt="Anverso"></div>
+            <div class="side reverso"><img src="imagens/1824Rreverso.jpg" alt="Reverso"></div>
+        </div>
+        <div class="coin-info">
+            <h3>D. Pedro I (1823 ATÉ 1831)</h3>
+            <p>Brasil Imperial</p>
+        </div>
+    </div>
+
+    <div class="coin-card" 
+         data-historia="Peça cunhada originalmente na casa de fundição da provincia imperial de Cuibá em 1830, mas contramarcada pelo revolucionários da revolta da Cabanagem. A Revolta da Cabanagem (1835–1840) foi uma sangrenta insurreição popular no Grão-Pará, motivada pela extrema pobreza da população e pelo descaso do Governo Imperial com a região. O conflito levou os rebeldes (cabanos) a tomarem o poder em Belém por três vezes, mas terminou com a repressão brutal das tropas do Império. Estima-se que o confronto tenha causado a morte de cerca de 30.000 pessoas, o que representava aproximadamente 20% da população total da província na época."
+         data-data="1830 C" data-facial="40 Réis com carimbo 10" data-diametro="29,0 mm" data-peso="5,6 g" data-catalogo="Nº 715"
+         data-img-anv="imagens/1830Canverso.jpg" 
+         data-img-rev="imagens/1830Creverso.jpg">
+        <div class="flip-container">
+            <div class="side anverso"><img src="imagens/1830Canverso.jpg" alt="Anverso"></div>
+            <div class="side reverso"><img src="imagens/1830Creverso.jpg" alt="Reverso"></div>
+        </div>
+        <div class="coin-info">
+            <h3>D. Pedro II (Cabanagem)</h3>
+            <p>Revolução Cabanagem: 1835.</p>
+        </div>
+    </div>
+
+    <div class="coin-card" 
+         data-historia="Peça cunhada originalmente na casa de fundição da provincia imperial do Rio de Janeiro em 1827, mas contramarcada pelo revolucionários farroupilhas. A Revolução Farroupilha (1835–1845) foi a maior guerra civil brasileira, motivada por altos impostos sobre o charque e busca por autonomia republicana. O conflito resultou na proclamação de repúblicas no Sul, sendo encerrado pelo Tratado de Ponche Verde após dez anos de combates. Estima-se que o confronto tenha causado cerca de 3.000 mortes, com baixas distribuídas entre revolucionários e tropas imperiais."
+         data-data="1827 R" data-facial="80 Réis com carimbo Farroupilha" data-diametro="41,0 mm" data-peso="27,3 g" data-catalogo="Nº 780 (exemplar extremamente raro)"
+         data-img-anv="imagens/1827Ranverso.jpg" 
+         data-img-rev="imagens/1827Rreverso.jpg">
+        <div class="flip-container">
+            <div class="side anverso"><img src="imagens/1827Ranverso.jpg" alt="Anverso"></div>
+            <div class="side reverso"><img src="imagens/1827Rreverso.jpg" alt="Reverso"></div>
+        </div>
+        <div class="coin-info">
+            <h3>D. Pedro II (Farroupilha)</h3>
+            <p>Revolução Farroupilha: 1835 até 1845.</p>
+        </div>
+    </div>
+
+     <div class="coin-card" 
+         data-historia="Cunhada em 1861 para circulação no Brasil Imperial foi contramarcada com uma punção de sapateiro ainda no século XIX."
+         data-data="1861" data-facial="500 Réis" data-diametro="25,5 mm" data-peso="6,3 g" data-catalogo="Nº Sem Número Oficial"
+         data-img-anv="imagens/1861500anverso.jpg" 
+         data-img-rev="imagens/1861500reverso.jpg">
+        <div class="flip-container">
+            <div class="side anverso"><img src="imagens/1861500anverso.jpg" alt="Anverso"></div>
+            <div class="side reverso"><img src="imagens/1861500reverso.jpg" alt="Reverso"></div>
+        </div>
+        <div class="coin-info">
+            <h3>D. Pedro II (1831 ATÉ 1889 - moedas contramarcadas)</h3>
+            <p>Brasil Imperial</p>
+        </div>
+    </div>
+
+    <div class="coin-card" 
+         data-historia="Cunhada em 1866 para circulação no Brasil Imperial foi contramarcada com a saldação Salve 24/02/1866 para alguma finalidade religiosa durante o século XIX."
+         data-data="1866" data-facial="1000 Réis" data-diametro="30,0 mm" data-peso="12,7 g" data-catalogo="Nº Sem Número Oficial"
+         data-img-anv="imagens/1866anverso.jpg" 
+         data-img-rev="imagens/1866reverso.jpg">
+        <div class="flip-container">
+            <div class="side anverso"><img src="imagens/1866anverso.jpg" alt="Anverso"></div>
+            <div class="side reverso"><img src="imagens/1866reverso.jpg" alt="Reverso"></div>
+        </div>
+        <div class="coin-info">
+            <h3>D. Pedro II (1831 ATÉ 1889 - moedas contramarcadas)</h3>
+            <p>Brasil Imperial</p>
+        </div>
+    </div>
+
+    <div class="coin-card" 
+         data-historia="Cunhada em 1869 para circulação no Brasil Imperial foi contramarcada com o carimbo denominado Divino provavelmente ainda no século XIX para ser dada aos pobres em eventos religiosos. Observa-se a idéia de dar dinheiro aos pobres em eventos religiosos se inicia como um costume medieval, no continente Europeu."
+         data-data="1869" data-facial="20 Réis" data-diametro="25,0 mm" data-peso="7,0 g" data-catalogo="Nº Sem Número Oficial"
+         data-img-anv="imagens/1869anverso.jpg" 
+         data-img-rev="imagens/1869reverso.jpg">
+        <div class="flip-container">
+            <div class="side anverso"><img src="imagens/1869anverso.jpg" alt="Anverso"></div>
+            <div class="side reverso"><img src="imagens/1869reverso.jpg" alt="Reverso"></div>
+        </div>
+        <div class="coin-info">
+            <h3>D. Pedro II (1831 ATÉ 1889)</h3>
+            <p>Brasil Imperial</p>
+        </div>
+    </div>
+
+    <div class="coin-card" 
+         data-historia="Cunhada em 1907 para circulação no Brasil República foi contramarcada com S. Guerra a contramarca particular mais famosa, na numismática brasileira."
+         data-data="1907" data-facial="2000 Réis" data-diametro="33,0 mm" data-peso="20,0 g" data-catalogo="Nº 696 D"
+         data-img-anv="imagens/1907anverso.jpg" 
+         data-img-rev="imagens/1907reverso.jpg">
+        <div class="flip-container">
+            <div class="side anverso"><img src="imagens/1907anverso.jpg" alt="Anverso"></div>
+            <div class="side reverso"><img src="imagens/1907reverso.jpg" alt="Reverso"></div>
+        </div>
+        <div class="coin-info">
+            <h3>República Velha (moedas contramarcadas)</h3>
+            <p>Brasil República</p>
+        </div>
+    </div>
+
+    <div class="coin-card" 
+         data-historia="Ficha metalica particular do Clube Caixeral. Valor de 10.000 Réis com erro de zero duplo."
+         data-data="Anos 30/40 do século XX" data-facial="10.000,00 Réis" data-diametro="33,0 mm" data-peso="6,5 g" data-catalogo="Nº 02 (exemplar extremamente raro)"
+         data-img-anv="imagens/dezmilanverso.jpg" 
+         data-img-rev="imagens/dezmilreverso.jpg">
+        <div class="flip-container">
+            <div class="side anverso"><img src="imagens/dezmilanverso.jpg" alt="Anverso"></div>
+            <div class="side reverso"><img src="imagens/dezmilreverso.jpg" alt="Reverso"></div>
+        </div>
+        <div class="coin-info">
+            <h3>Segunda Guerra Mundial (fichas particulares de consumo)</h3>
+            <p>Brasil República</p>
+        </div>
+    </div>
+
+</main>
+
+<div id="modal-detalhes">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <div class="modal-view-3d">
+            <div class="magnifier-container" id="magnifier-area">
+                <div class="magnifier-glass" id="magnifier-glass"></div>
+                <div class="flip-container" id="modal-flip">
+                    <div class="side anverso"><img id="m-img-anv" src=""></div>
+                    <div class="side reverso"><img id="m-img-rev" src=""></div>
+                </div>
+            </div>
+            <div class="nav-arrows">
+                <button class="arrow-btn" id="btn-anv">◀</button>
+                <button class="arrow-btn" id="btn-rev">▶</button>
+            </div>
+            <p style="font-size: 0.7rem; color: #888; text-align:center; margin-top:10px;">Clique nas setas para girar e use o mouse para a lupa</p>
+        </div>
+        <div class="modal-info-container">
+            <h2 id="m-titulo"></h2>
+            <table class="tech-table">
+                <tr><td class="tech-label">Ano:</td><td class="tech-value" id="m-data"></td></tr>
+                <tr><td class="tech-label">Valor:</td><td class="tech-value" id="m-facial"></td></tr>
+                <tr><td class="tech-label">Diâmetro:</td><td class="tech-value" id="m-diametro"></td></tr>
+                <tr><td class="tech-label">Peso:</td><td class="tech-value" id="m-peso"></td></tr>
+                <tr><td class="tech-label">Catálogo:</td><td class="tech-value" id="m-catalogo"></td></tr>
+            </table>
+            <p id="m-historia" class="tech-text"></p>
+        </div>
+    </div>
+</div>
+
+ <a href="consulta.html" class="scroll-link">
+    <div class="scroll-indicator">
+      Clique aqui para ter acesso as relações descritivas dos exemplares da Coleção Numismática Zanoni.
+    </div>
+    </a>
+
+<footer>
+    <i>© 2025 Coleção Numismática Zanoni <img src="https://d1yei2z3i6k35z.cloudfront.net/6946809/65e45ac72773e_zanoni.1.png" alt="Logo"></i>
+</footer>
+
+<script>
+    const modal = document.getElementById('modal-detalhes');
+    const closeBtn = document.querySelector('.modal-close');
+    const magnifierArea = document.getElementById('magnifier-area');
+    const glass = document.getElementById('magnifier-glass');
+    const modalFlip = document.getElementById('modal-flip');
+    const btnAnv = document.getElementById('btn-anv');
+    const btnRev = document.getElementById('btn-rev');
+
+    document.querySelectorAll('.coin-card').forEach(card => {
+        card.addEventListener('click', () => {
+            document.getElementById('m-titulo').innerText = card.querySelector('h3').innerText;
+            document.getElementById('m-img-anv').src = card.getAttribute('data-img-anv');
+            document.getElementById('m-img-rev').src = card.getAttribute('data-img-rev');
+            document.getElementById('m-data').innerText = card.getAttribute('data-data');
+            document.getElementById('m-facial').innerText = card.getAttribute('data-facial');
+            document.getElementById('m-diametro').innerText = card.getAttribute('data-diametro');
+            document.getElementById('m-peso').innerText = card.getAttribute('data-peso');
+            document.getElementById('m-catalogo').innerText = card.getAttribute('data-catalogo');
+            document.getElementById('m-historia').innerText = card.getAttribute('data-historia');
+            modalFlip.classList.remove('flipped');
+            modal.style.display = 'flex';
+        });
+    });
+
+    btnAnv.onclick = () => modalFlip.classList.remove('flipped');
+    btnRev.onclick = () => modalFlip.classList.add('flipped');
+
+    magnifierArea.onmousemove = (e) => {
+        glass.style.display = "block";
+        const rect = magnifierArea.getBoundingClientRect();
+        const isFlipped = modalFlip.classList.contains('flipped');
+        const currentImg = isFlipped ? document.getElementById('m-img-rev') : document.getElementById('m-img-anv');
+        let x = e.clientX - rect.left;
+        let y = e.clientY - rect.top;
+        glass.style.left = (x - glass.offsetWidth / 2) + "px";
+        glass.style.top = (y - glass.offsetHeight / 2) + "px";
+        const zoom = 2.5;
+        glass.style.backgroundImage = `url('${currentImg.src}')`;
+        glass.style.backgroundSize = (rect.width * zoom) + "px " + (rect.height * zoom) + "px";
+        glass.style.backgroundPosition = `-${(x * zoom) - glass.offsetWidth / 2}px -${(y * zoom) - glass.offsetHeight / 2}px`;
+    };
+
+    magnifierArea.onmouseleave = () => glass.style.display = "none";
+    closeBtn.onclick = () => modal.style.display = 'none';
+    window.onclick = (e) => { if (e.target == modal) modal.style.display = 'none'; }
+</script>
+
+</body>
+</html>
