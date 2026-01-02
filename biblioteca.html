@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acervo Digital | Biblioteca Numismática Zanoni</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+
+    <style>
+        :root {
+            --gold: #c5a059;
+            --dark-gold: #8e6d2d;
+            --bg-black: #0a0a0a;
+            --card-bg: #151515;
+            --text-gray: #e0e0e0;
+        }
+
+        body {
+            color: var(--text-gray);
+            background-color: var(--bg-black);
+            font-family: 'Cinzel', serif, 'Segoe UI', serif; /* Fonte clássica para museus */
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 20px;
+            background: linear-gradient(to bottom, #1a1a1a, #0a0a0a);
+            text-align: center;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        nav a {
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: white; }
+
+        .logo-container img {
+            width: 200px;
+            border: 1px solid var(--gold);
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .library-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Ficha Técnica (Card) */
+        .book-card {
+            background-color: var(--card-bg);
+            border-left: 4px solid var(--gold);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(197, 160, 89, 0.2);
+        }
+
+        .book-title {
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .tech-info {
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .tech-info div {
+            margin-bottom: 5px;
+        }
+
+        .tech-label {
+            color: var(--gold);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 11px;
+        }
+
+        .btn-access {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .btn-access:hover {
+            background: var(--gold);
+            color: black;
+        }
+
+        .actions {
+            text-align: center;
+            padding: 40px;
+            background: #0f0f0f;
+        }
+
+        button {
+            background: none;
+            border: 1px solid #444;
+            color: #888;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 5px;
+            transition: 0.3s;
+        }
+
+        button:hover { border-color: var(--gold); color: var(--gold); }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .footer-logo { width: 100px; filter: grayscale(1); margin-top: 10px; }
+
+        /* Esconder tabela original usada apenas para o motor do PDF */
+        #tabela1 { display: none; }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="login.html">Área Restrita</a></li>
+            <li><a href="consulta.html">Relações Descritivas da Coleção</a></li>
+            <li><a href="index.html">Exposição Interativa</a></li>
+        </ul>
+    </nav>
+    <div class="logo-container">
+        <h1>Biblioteca Virtual Zanoni</h1>
+        <p style="color: #666; font-size: 14px; letter-spacing: 2px;">ACERVO TÉCNICO E HISTÓRICO - 100 % Gratuito.</p>
+    </div>
+</header>
+
+<main>
+    <div class="library-grid" id="grid-livros">
+        </div>
+
+    <table id="tabela1">
+        <thead><tr><th>Título</th><th>Ano</th><th>Páginas</th></tr></thead>
+        <tbody id="tabela-body"></tbody>
+    </table>
+
+    <div class="actions">
+        <button onclick="window.print()">Imprimir Catálogo Visual</button>
+        <button onclick="salvarTabelaComoPDF('tabela1', 'Acervo_Zanoni')">Gerar Inventário em PDF</button>
+    </div>
+</main>
+
+<footer>
+    <i>
+   © 2025 Web Biblioteca Virtual Numismática. Todos os direitos reservados a Juliano <img src="https://d1yei2z3i6k35z.cloudfront.net/6946809/65e45ac72773e_zanoni.1.png" alt="Logo de Juliano Zanoni">
+    </i>
+</footer>
+
+<script>
+    // Base de Dados das Obras
+    const obras = [
+        { t: "A INFLUÊNCIA ALEMÃ NA FILATELIA BRASILEIRA", a: "2024", p: "7 páginas", d: "Artigo histórico e ilustrativo", link: "https://online.fliphtml5.com/lusnq/fjey/" },
+        { t: "AS VARIAÇÕES DAS MOEDAS DE COBRE DO BRASIL", a: "2024", p: "113 páginas", d: "Colônia, Reino Unido e Império", link: "https://online.fliphtml5.com/lusnq/enbq/" },
+        { t: "CATÁLOGO DAS MOEDAS COMUNS DO PLANO REAL", a: "2024", p: "54 páginas", d: "Material Descritivo", link: "https://online.fliphtml5.com/lusnq/zxjk/" },
+        { t: "CATÁLOGO DAS MOEDAS COMUNS DO PLANO REAL", a: "2025", p: "54 páginas", d: "Material Descritivo", link: "https://online.fliphtml5.com/lusnq/btwo/" },
+        { t: "CATÁLOGO PARA MATRIZES DE CUNHOS DUPLICADOS (PLANO REAL)", a: "2024", p: "217 páginas", d: "Material descritivo e imagens ilustrativas", link: "https://online.fliphtml5.com/lusnq/qtft/" },
+        { t: "CATÁLOGO PARA MATRIZES DE CUNHOS DUPLICADOS (PLANO REAL)", a: "2025", p: "227 páginas", d: "Material descritivo e imagens ilustrativas", link: "https://online.fliphtml5.com/lusnq/iezr/" },
+        { t: "CATÁLOGO PARA MATRIZES DE CUNHOS DUPLICADOS (PLANO REAL)", a: "2026", p: "227 páginas", d: "Edição atualizada com imagens ilustrativas", link: "https://online.fliphtml5.com/lusnq/nfvx/" },
+        { t: "COMO COLECIONAR FICHAS", a: "2024", p: "207 páginas", d: "Abordagem histórica e contemporânea", link: "https://online.fliphtml5.com/lusnq/ylra/" },
+        { t: "ESTUDO NUMISMÁTICO DAS ANOMALIAS DO PLANO REAL", a: "2024", p: "242 páginas", d: "Imagens coloridas de alta definição", link: "https://online.fliphtml5.com/lusnq/rizy/" },
+        { t: "A MOEDA DE R$ 0,50 1994 - FALSIFICAÇÕES", a: "2024", p: "16 páginas", d: "Artigo técnico sobre falsificações", link: "https://online.fliphtml5.com/lusnq/gzsv/" },
+        { t: "COLEÇÃO ZANONI: MOEDAS DE COBRE IMPERIAL", a: "2025", p: "226 páginas", d: "Versão ilustrada com imagens coloridas", link: "https://online.fliphtml5.com/lusnq/ntnd/" },
+        { t: "COLEÇÃO ZANONI: R$ 0,05 DUPLICIDADE", a: "2024", p: "185 páginas", d: "Estudo detalhado de duplicidade", link: "https://online.fliphtml5.com/lusnq/ofeq/" },
+        { t: "COLEÇÃO ZANONI: R$ 0,05 EXCESSO DE METAL", a: "2024", p: "14 páginas", d: "Imagens de erros de cunhagem", link: "https://online.fliphtml5.com/lusnq/rwwh/" },
+        { t: "COLEÇÃO ZANONI: R$ 0,05 EXCESSO DE METAL", a: "2025", p: "18 páginas", d: "Imagens de erros de cunhagem", link: "https://online.fliphtml5.com/lusnq/iluf/" },
+        { t: "COLEÇÃO ZANONI: R$ 0,10 1ª FAMÍLIA DUPLICIDADE", a: "2024", p: "85 páginas", d: "Estudo ilustrado", link: "https://online.fliphtml5.com/lusnq/uhtw/" },
+        { t: "COLEÇÃO ZANONI: R$ 0,10 2ª FAMÍLIA DUPLICIDADE", a: "2024", p: "194 páginas", d: "Estudo ilustrado", link: "https://online.fliphtml5.com/lusnq/dmqv/" },
+        { t: "COLEÇÃO ZANONI: R$ 0,50 DUPLICIDADE", a: "2024", p: "116 páginas", d: "Estudo ilustrado", link: "https://online.fliphtml5.com/lusnq/qvbl/" },
+        { t: "COLEÇÃO ZANONI: R$ 1,00 DUPLICIDADE", a: "2024", p: "68 páginas", d: "Estudo ilustrado", link: "https://online.fliphtml5.com/lusnq/widy/" }
+    ];
+
+    function renderizarBiblioteca() {
+        const grid = document.getElementById('grid-livros');
+        const tabela = document.getElementById('tabela-body');
+        
+        obras.forEach(obra => {
+            // Criar Card Visual
+            grid.innerHTML += `
+                <div class="book-card">
+                    <div>
+                        <div class="book-title">${obra.t}</div>
+                        <div class="tech-info">
+                            <div><span class="tech-label">Ano:</span> ${obra.a}</div>
+                            <div><span class="tech-label">Extensão:</span> ${obra.p}</div>
+                            <div><span class="tech-label">Descrição:</span> ${obra.d}</div>
+                        </div>
+                    </div>
+                    <a href="${obra.link}" class="btn-access" target="_blank">Consultar Obra</a>
+                </div>
+            `;
+            // Popular Tabela Oculta para o PDF
+            tabela.innerHTML += `<tr><td>${obra.t}</td><td>${obra.a}</td><td>${obra.p}</td></tr>`;
+        });
+    }
+
+    function salvarTabelaComoPDF(tabelaId, nomeArquivo) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p', 'pt', 'a4');
+        doc.setFontSize(18);
+        doc.setTextColor(142, 109, 45);
+        doc.text("Inventário - Biblioteca Numismática Zanoni", 40, 40);
+        doc.autoTable({ 
+            html: `#${tabelaId}`, 
+            startY: 60,
+            headStyles: { fillColor: [20, 20, 20], textColor: [197, 160, 89] }
+        });
+        doc.save(`${nomeArquivo}.pdf`);
+    }
+
+    renderizarBiblioteca();
+</script>
+
+</body>
+</html>
