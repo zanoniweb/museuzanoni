@@ -351,6 +351,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["721", "1936", "5000 Réis", "MBC", "Qunatidade de peças cunhadas 1.986.000", "R$ 60,00"],
                     ["721 A", "1936", "5000 Réis", "MBC", "Palavra Santos duplicada", "R$ 120,00"],
                     ["722", "1937", "5000 Réis", "MBC", "Qunatidade de peças cunhadas 414.000", "R$ 70,00"],
+                    ["722A", "1937", "5000 Réis", "MBC", "cOM PONTOS NAS FRENTE DOS S", "R$ 80,00"],
                     ["723", "1938", "5000 Réis", "MBC", "Qunatidade de peças cunhadas 994.000", "R$ 60,00"],
                     ["723A", "1938", "5000 Réis", "MBC", "CARIMBO SOCIEDADE NUMISMÁTICA", "R$ 500,00"],
                 ],
