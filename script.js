@@ -1608,7 +1608,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["TL 40 B", "1991", "1 Crédito para ligação", "MBC", "Fiha de Telefone Local - PLASTIPAR 11 R.I", "R$ 5,00"],
                 ],
 
-                real_venda: [
+                escambo_01: [
                     ["1", "1994", "0,01", "MBC", "7 x 3,5", "R$ 24,50"],
                     ["2", "1995", "0,01", "MBC", "1 x 3,5", "R$ 3,50"],
                     ["3", "1996", "0,01", "MBC", "5 x 3,50", "R$ 17,50"],
@@ -1662,7 +1662,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["51", "2019 BEIJA-FLOR", "1.00", "MBC", "1 X 5,00", "R$ 5,00"],
                 ],
 
-                real_venda_02: [
+                escambo_02: [
                     ["01", "1996", "0,01", "MBC", "1 x Cunho marcado sinal da data no anverso - 10,00", "R$ 10,00"],
                     ["02", "1997", "0,01", "MBC", "1 x Cunho duplo Brasil + Data no anverso - 35,00", "R$ 35,00"],
                     ["03", "1999", "0,01", "SOB", "1 x Cunho duplo Brasil - 100,00", "R$ 100,00"],
