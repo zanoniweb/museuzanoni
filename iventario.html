@@ -2,166 +2,379 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>INVENTÁRIO NUMISMÁTICO COLEÇÃO ZANONI</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
     <style>
-        :root {
-            --primary-color: #1a2a3a; /* Azul Marinho Profissional */
-            --accent-color: #c5a059;  /* Dourado Numismático */
-            --bg-color: #f8f9fa;
-            --text-color: #333;
-            --white: #ffffff;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 20px;
-        }
-
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background: var(--primary-color);
-            color: var(--white);
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            font-size: 1.8rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .shortcut-list {
-            display: grid;
-            grid-template-columns: 1fr; /* Padrão celular */
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-
-        /* Responsividade para Tablets e Desktop */
-        @media (min-width: 768px) {
-            .shortcut-list {
-                grid-template-columns: 1fr 1fr;
+        @page {
+            size: A4;
+            margin: 20mm 15mm;
+            @bottom-right {
+                content: "Página " counter(page) " de " counter(pages);
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 10pt;
+                color: #555555;
+            }
+            @bottom-left {
+                content: "Coleção Numismática Zanoni — Relatório Técnico";
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 10pt;
+                color: #555555;
             }
         }
 
-        .shortcut-list button {
-            background: var(--white);
-            border: 1px solid #e0e0e0;
-            padding: 18px;
-            border-radius: 8px;
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #ffffff;
+            color: #111111;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            font-size: 11pt;
+        }
+
+        /* Painel de Controle dos Botões */
+        .control-panel {
+            background-color: #f5f5f5;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #dddddd;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            font-family: Arial, sans-serif;
+            font-size: 10.5pt;
+            font-weight: bold;
+            padding: 10px 20px;
+            margin: 0 10px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.95rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.2s;
         }
 
-        .shortcut-list button:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        .btn-view {
+            background-color: #777777;
+            color: #ffffff;
         }
 
-        .shortcut-list b {
-            color: var(--primary-color);
-            font-weight: 600;
+        .btn-view:hover {
+            background-color: #555555;
         }
 
-        .total-card {
-            background: var(--white);
-            border-left: 5px solid var(--accent-color);
-            padding: 25px;
-            border-radius: 8px;
+        .btn-pdf {
+            background-color: #1a2a3a;
+            color: #ffffff;
+        }
+
+        .btn-pdf:hover {
+            background-color: #0f1924;
+        }
+
+        /* Conteúdo Principal do Relatório */
+        .report-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .header {
             text-align: center;
-            font-size: 1.4rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
+            border-bottom: 2px solid #1a2a3a;
+            padding-bottom: 12px;
+            margin-bottom: 25px;
         }
 
-        .total-card b {
-            color: #27ae60; /* Verde para valor total */
+        .header h1 {
+            font-size: 20pt;
+            text-transform: uppercase;
+            color: #1a2a3a;
+            margin: 0 0 6px 0;
+            font-weight: bold;
+            letter-spacing: 0.5px;
         }
 
-        .cta-link {
-            text-decoration: none;
-            display: block;
+        .header .subtitle {
+            font-size: 12pt;
+            font-style: italic;
+            color: #555555;
+            margin: 0;
         }
 
-        .scroll-indicator {
-            background: var(--accent-color);
-            color: var(--white);
-            padding: 20px;
-            border-radius: 8px;
+        .meta-box {
+            width: 100%;
+            margin-bottom: 25px;
+            border: 1px solid #dddddd;
+            background-color: #fcfcfc;
+            padding: 12px 15px;
+            font-size: 10.5pt;
+        }
+
+        .meta-box table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .meta-box td {
+            padding: 3px 0;
+            vertical-align: top;
+        }
+
+        .meta-box td.label {
+            font-weight: bold;
+            color: #1a2a3a;
+            width: 22%;
+        }
+
+        .technical-text {
+            text-align: justify;
+            margin-bottom: 25px;
+            text-indent: 1.5cm;
+        }
+
+        .technical-text p {
+            margin: 0 0 12px 0;
+        }
+
+        .section-title {
+            font-size: 13pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #1a2a3a;
+            border-left: 4px solid #c5a059;
+            padding-left: 8px;
+            margin: 25px 0 12px 0;
+            page-break-after: avoid;
+        }
+
+        .inventory-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+        }
+
+        .inventory-table th {
+            background-color: #1a2a3a;
+            color: #ffffff;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 10pt;
+            padding: 8px 10px;
+            border: 1px solid #1a2a3a;
+            text-align: left;
+        }
+
+        .inventory-table th.right, .inventory-table td.right {
+            text-align: right;
+        }
+
+        .inventory-table td {
+            padding: 7px 10px;
+            border: 1px solid #dddddd;
+            font-size: 10.5pt;
+        }
+
+        .inventory-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .inventory-table tr.total-row {
+            font-weight: bold;
+            background-color: #f4edd9 !important;
+        }
+
+        .inventory-table tr.total-row td {
+            border-top: 2px solid #1a2a3a;
+            border-bottom: 2px solid #1a2a3a;
+            color: #1a2a3a;
+            font-size: 11pt;
+        }
+
+        .signatures {
+            margin-top: 60px;
+            width: 100%;
+            page-break-inside: avoid;
+        }
+
+        .signatures table {
+            width: 100%;
+        }
+
+        .signatures td {
             text-align: center;
-            font-weight: 600;
-            transition: background 0.3s;
+            padding-top: 40px;
+            font-size: 10.5pt;
         }
 
-        .scroll-indicator:hover {
-            background: #b08d48;
+        .signatures .line {
+            width: 50%;
+            margin: 0 auto 5px auto;
+            border-top: 1px solid #333333;
         }
 
+        /* Regras exclusivas para a Impressão / PDF */
+        @media print {
+            .control-panel {
+                display: none; /* Esconde os botões no PDF */
+            }
+            body {
+                background-color: #ffffff;
+            }
+            .report-container {
+                max-width: 100%;
+                padding: 0;
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>Inventário Coleção Numismática Zanoni</h1>
-    </header>
+    <!-- Painel com os botões solicitados -->
+    <div class="control-panel">
 
-    
-
-    <main>
-        <div class="shortcut-list">
-            <button type="button" onclick="pesquisaRapida('cobre')"><b>Moedas de Cobre (Coleção)</b> <span>R$ 36.040,00</span></button>
-            <button type="button" onclick="pesquisaRapida('prata')"><b>Moedas de Prata (Coleção)</b> <span>R$ 37.928</span></button>
-            <button type="button" onclick="pesquisaRapida('bronze')"><b>Moedas de Bronze (Coleção)</b> <span>R$ 1.875,00</span></button>
-            <button type="button" onclick="pesquisaRapida('niquel')"><b>Moedas de Níquel (Coleção)</b> <span>R$ 2.150,00</span></button>
-            <button type="button" onclick="pesquisaRapida('outros')"><b>Outros Metais (Coleção)</b> <span>R$ 2.362,00</span></button>
-            <button type="button" onclick="pesquisaRapida('real')"><b>Moedas do Real (Coleção)</b> <span>R$ 1.366,00</span></button>
-            <button type="button" onclick="pesquisaRapida('escassas_real')"><b>Escassas do Real (Coleção)</b> <span>R$ 1.942,50</span></button>
-            <button type="button" onclick="pesquisaRapida('anomalas_2')"><b>Anômalas (Coleção)</b> <span>R$ 8.680,75</span></button>
-            <button type="button" onclick="pesquisaRapida('duplos')"><b>Cunhos Duplos (Coleção)</b> <span>R$ 17.660,00</span></button>
-            <button type="button" onclick="pesquisaRapida('fichas')"><b>Fichas (Coleção)</b> <span>R$ 5.075,00</span></button>
-            <button type="button" onclick="pesquisaRapida('escambo_01')"><b>Escassas para permuta - Plano Real</b> <span>R$ 17.686,00</span></button>
-            <button type="button" onclick="pesquisaRapida('escambo_02')"><b>Anômalas para permuta - Plano Real</b> <span>R$ 5.925,00</span></button>
-        </div>
-
-        <div class="total-card">
-            Valor Total Avaliado para Venda em 04/06/2026: <b>R$ 138.687,25</b>
-        </div>
+    <!--
+       
+        <button class="btn btn-view" onclick="alert('Os dados já estão sendo exibidos em tela abaixo.')">Visualizar Dados em Tela</button>
+        
+    -->
+        <button class="btn btn-pdf" onclick="window.print()">Gerar Documento em PDF</button>
+    </div>
 
         <a href="index.html" class="cta-link">
             <div class="scroll-indicator">
                 Clique aqui para voltar a página inicial
             </div>
         </a>
-    </main>
-</div>
+
+    <!-- Container estrutural do relatório técnico -->
+    <div class="report-container">
+
+        <div class="header">
+            <h1>Relatório de Inventário Numismático</h1>
+            <div class="subtitle">Coleção Numismática Zanoni</div>
+        </div>
+
+        <div class="meta-box">
+            <table>
+                <tr>
+                    <td class="label">Proprietário:</td>
+                    <td>Acervo Família Zanoni</td>
+                    <td class="label">Data de Avaliação:</td>
+                    <td><script>document.write(new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }));</script></td>
+                </tr>
+                <tr>
+                    <td class="label">Tipo de Documento:</td>
+                    <td>Laudo Técnico de Avaliação Patrimonial</td>
+                    <td class="label">Metodologia:</td>
+                    <td>Valor de Mercado / Estado de Conservação</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section-title">1. Considerações Técnicas</div>
+        <div class="technical-text">
+            <p>
+                O presente documento certifica o levantamento e a avaliação técnico-financeira dos ativos numismáticos integrantes da <strong>Coleção Zanoni</strong>. A metodologia de valoração tomou como referência o mercado corrente nacional, índices catalográficos atualizados e a liquidez potencial dos lotes individualizados para venda direta ou leilão especializado, considerando os graus de conservação regulamentares (BC, MBC, Soberba e Flor de Cunho).
+            </p>
+            <p>
+                Os itens encontram-se devidamente catalogados e classificados por famílias metálicas e tipologias de cunhagem, destacando-se as variantes anômalas, erros de cunho e as séries destinadas a permutas de circulação regular, conforme discriminado no sumário analítico a seguir.
+            </p>
+        </div>
+
+        <div class="section-title">2. Demonstrativo Analítico por Categoria</div>
+        
+        <table class="inventory-table">
+            <thead>
+                <tr>
+                    <th>Item / Coleção Setorial</th>
+                    <th class="right">Valor Evaluado (R$)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Moedas de Cobre (Coleção)</td>
+                    <td class="right">36.040,00</td>
+                </tr>
+                <tr>
+                    <td>Moedas de Prata (Coleção)</td>
+                    <td class="right">39.528,00</td>
+                </tr>
+                <tr>
+                    <td>Moedas de Bronze (Coleção)</td>
+                    <td class="right">1.875,00</td>
+                </tr>
+                <tr>
+                    <td>Moedas de Níquel (Coleção)</td>
+                    <td class="right">2.150,00</td>
+                </tr>
+                <tr>
+                    <td>Outros Metais (Coleção)</td>
+                    <td class="right">2.362,00</td>
+                </tr>
+                <tr>
+                    <td>Moedas do Real (Coleção)</td>
+                    <td class="right">1.366,00</td>
+                </tr>
+                <tr>
+                    <td>Escassas do Real (Coleção)</td>
+                    <td class="right">1.942,50</td>
+                </tr>
+                <tr>
+                    <td>Anômalas (Outros Planos Monetários)</td>
+                    <td class="right"> 390,00</td>
+                </tr>
+                <tr>
+                    <td>Anômalas (Coleção Real)</td>
+                    <td class="right">8.770,75</td>
+                </tr>
+                <tr>
+                    <td>Cunhos Duplos (Coleção)</td>
+                    <td class="right">17.660,00</td>
+                </tr>
+                <tr>
+                    <td>Fichas (Coleção)</td>
+                    <td class="right">5.075,00</td>
+                </tr>
+                <tr>
+                    <td>Escassas para permuta - Plano Real</td>
+                    <td class="right">17.686,00</td>
+                </tr>
+                <tr>
+                    <td>Anômalas para permuta - Plano Real</td>
+                    <td class="right">5.925,00</td>
+                </tr>
+                <tr class="total-row">
+                    <td>VALOR TOTAL DO INVENTÁRIO VALORADO</td>
+                    <td class="right">R$ 140.765,25</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="section-title">3. Conclusão e Encerramento</div>
+        <div class="technical-text">
+            <p>
+                O valor total consolidado do acervo numismático avaliado fixa-se em <strong>R$ 140.765,25 (cento e quarenta mil, duzentos e oitenta e sete reais e vinte e cinco centavos)</strong>. Este montante reflete o valor patrimonial intrínseco e extrínseco do inventário na data de encerramento deste relatório.
+            </p>
+        </div>
+
+        <!-- Área de assinatura modificada: apenas o curador responsável de forma centralizada -->
+        <div class="signatures">
+            <table>
+                <tr>
+                    <td>
+                        <div class="line"></div>
+                        <strong>Curador Responsável pelo Inventário</strong><br>
+                        Curadoria / Auditoria Numismática<br>
+                        Coleção Zanoni
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
 
 </body>
 </html>
