@@ -246,8 +246,63 @@
     </div>
 
 -->
+    
+    <div style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
+    
+    <!-- TÍTULO PRINCIPAL (GATILHO) -->
+    <h1 style="color: #8c1d40; cursor: pointer; display: inline-block; transition: 0.2s;" 
+        onclick="document.getElementById('modal-joao-v').style.display='flex';"
+        onmouseover="this.style.color='#5c132a'" 
+        onmouseout="this.style.color='#8c1d40'">
+        D. João V (Reinado: 1715 ATÉ 1750)
+    </h1>
+    <p style="font-size: 0.85rem; color: #666; margin-top: -5px;">(Clique no texto acima para expandir as informações)</p>
 
-<h1>D. João V (1715 ATÉ 1749)</h1>
+    <!-- TELA OVERLAY / PAINEL INLINE -->
+    <div id="modal-joao-v" 
+         style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 9999;"
+         onclick="if(event.target === this) this.style.display='none';">
+        
+        <!-- CONTEÚDO DO CARD -->
+        <div style="background: #fff; padding: 30px; border-radius: 12px; max-width: 550px; width: 90%; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.3); position: relative;">
+            
+            <!-- Botão "X" superior -->
+            <span style="position: absolute; top: 10px; right: 20px; font-size: 24px; cursor: pointer; color: #aaa;" 
+                  onclick="document.getElementById('modal-joao-v').style.display='none';">&times;</span>
+
+            <h2 style="color: #8c1d40; margin-top: 0;">D. João V: O Magnânimo</h2>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Biografia:</strong> Nasceu em Lisboa em 1689 e faleceu na mesma cidade em 1750, encerrando um dos períodos mais opulentos da história portuguesa.
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Atos por Portugal:</strong> Expoente máximo do absolutismo, usou o ouro colonial para construir grandes obras como o Palácio-Convento de Mafra e o Aqueduto das Águas Livres, além de investir na ciência e nas artes.
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Atos pelo Brasil Colonial:</strong> Seu reinado cobriu o auge do Ciclo do Ouro (com forte cobrança de impostos como o Quinto). Paralelamente, garantiu a expansão territorial luso-brasileira além da Linha de Tordesilhas, que foi formalizada no Tratado de Madrid (1750) pelo princípio do <em>uti possidetis</em>.
+            </p>
+
+            <!-- CONTAINER DE BOTÕES DE FECHAMENTO -->
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+                <button style="flex: 1; padding: 10px; background: #e0e0e0; color: #333; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;" 
+                        onclick="document.getElementById('modal-joao-v').style.display='none';">
+                    Fechar Painel
+                </button>
+                
+                <!--
+                <a href="index.html" 
+                   style="flex: 1; padding: 10px; background: #8c1d40; color: #fff; border: none; border-radius: 6px; font-weight: bold; text-decoration: none; text-align: center; font-size: 0.9rem;">
+                    Voltar para Inicial
+                </a>
+              -->
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
     <div class="coin-card" 
          data-historia="Cunhada em Lisboa para circulação no Brasil Colonial."
@@ -346,7 +401,64 @@
         </div>
     </div>
 
-<h1>D. José I (1752 ATÉ 1777)</h1>
+
+<div style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
+    
+    <!-- TÍTULO PRINCIPAL (GATILHO) -->
+    <h1 style="color: #8c1d40; cursor: pointer; display: inline-block; transition: 0.2s;" 
+        onclick="document.getElementById('modal-jose-i').style.display='flex';"
+        onmouseover="this.style.color='#5c132a'" 
+        onmouseout="this.style.color='#8c1d40'">
+        D. José I (Reinado: 1750 ATÉ 1777)
+    </h1>
+    <p style="font-size: 0.85rem; color: #666; margin-top: -5px;">(Clique no texto acima para expandir as informações)</p>
+
+    <!-- TELA OVERLAY / PAINEL INLINE -->
+    <div id="modal-jose-i" 
+         style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 9999;"
+         onclick="if(event.target === this) this.style.display='none';">
+        
+        <!-- CONTEÚDO DO CARD -->
+        <div style="background: #fff; padding: 30px; border-radius: 12px; max-width: 550px; width: 90%; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.3); position: relative;">
+            
+            <!-- Botão "X" superior -->
+            <span style="position: absolute; top: 10px; right: 20px; font-size: 24px; cursor: pointer; color: #aaa;" 
+                  onclick="document.getElementById('modal-jose-i').style.display='none';">&times;</span>
+
+            <h2 style="color: #8c1d40; margin-top: 0;">D. José I: O Reformador</h2>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Biografia:</strong> Nasceu em Lisboa em 1714 e faleceu na mesma cidade em 1777. Seu governo ficou profundamente marcado pela atuação de seu braço-direito, o Secretário de Estado Sebastião José de Carvalho e Melo — o famoso Marquês de Pombal.
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Atos por Portugal:</strong> Enfrentou o catastrófico Terremoto de Lisboa de 1755 e liderou a reconstrução iluminista e planejada da capital (a Baixa Pombalina). Promoveu reformas profundas na educação, modernizou a economia portuguesa diminuindo a dependência da Inglaterra e expulsou os jesuítas do reino.
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Atos pelo Brasil Colonial:</strong> Transferiu a capital da colônia de Salvador para o Rio de Janeiro (1763) para aproximar o centro político do escoamento do ouro. Extinguiu as Capitanias Hereditárias transformando-as em províncias da Coroa, expulsou os jesuítas (impactando drasticamente o ensino colonial) e instituiu a derrama para combater a queda na arrecadação do imposto mineral.
+            </p>
+
+            <!-- CONTAINER DE BOTÕES DE FECHAMENTO -->
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+                <button style="flex: 1; padding: 10px; background: #e0e0e0; color: #333; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;" 
+                        onclick="document.getElementById('modal-jose-i').style.display='none';">
+                    Fechar Painel
+                </button>
+                
+                <!--
+                <a href="index.html" 
+                   style="flex: 1; padding: 10px; background: #8c1d40; color: #fff; border: none; border-radius: 6px; font-weight: bold; text-decoration: none; text-align: center; font-size: 0.9rem;">
+                    Voltar para Inicial
+                </a>
+                -->
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 <!--
 
@@ -607,8 +719,62 @@
         </div>
     </div>
 
-<h1>D. Pedro III & D. Maria I (1778 ATÉ 1784)</h1>
+<div style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
+    
+    <!-- TÍTULO PRINCIPAL (GATILHO) -->
+    <h1 style="color: #8c1d40; cursor: pointer; display: inline-block; transition: 0.2s;" 
+        onclick="document.getElementById('modal-maria-pedro').style.display='flex';"
+        onmouseover="this.style.color='#5c132a'" 
+        onmouseout="this.style.color='#8c1d40'">
+        D. Maria I & D. Pedro III (Reinado Conjunto: 1777 ATÉ 1786)
+    </h1>
+    <p style="font-size: 0.85rem; color: #666; margin-top: -5px;">(Clique no texto acima para expandir as informações)</p>
 
+    <!-- TELA OVERLAY / PAINEL INLINE -->
+    <div id="modal-maria-pedro" 
+         style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 9999;"
+         onclick="if(event.target === this) this.style.display='none';">
+        
+        <!-- CONTEÚDO DO CARD -->
+        <div style="background: #fff; padding: 30px; border-radius: 12px; max-width: 550px; width: 90%; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.3); position: relative;">
+            
+            <!-- Botão "X" superior -->
+            <span style="position: absolute; top: 10px; right: 20px; font-size: 24px; cursor: pointer; color: #aaa;" 
+                  onclick="document.getElementById('modal-maria-pedro').style.display='none';">&times;</span>
+
+            <h2 style="color: #8c1d40; margin-top: 0;">D. Maria I ("A Piedosa") & D. Pedro III ("O Capacidônio")</h2>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Biografia:</strong> D. Maria I (1734–1816) casou-se com seu tio, D. Pedro III (1717–1786). Com a ascensão de D. Maria ao trono em 1777, D. Pedro tornou-se rei consorte. O reinado conjunto durou até a morte dele em 1786. Posteriormente, D. Maria enfrentou graves crises de saúde mental, ficando conhecida na história brasileira como "A Louca".
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Atos por Portugal:</strong> Esse período ficou conhecido como a **"Viradeira"**, marcado pelo afastamento e exílio do Marquês de Pombal. Houve a reabilitação da nobreza e do clero perseguidos no governo anterior. D. Maria I focou no desenvolvimento de instituições científicas e de caridade, como a Academia Real das Ciências de Lisboa e a fundação da Real Biblioteca Pública.
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Atos pelo Brasil Colonial:</strong> Em 1785, D. Maria I assinou o infame **Alvará de Instrução**, que proibiu a existência de manufaturas e indústrias têxteis no Brasil, obrigando a colônia a importar tudo de Portugal e mantendo-a estritamente agrária. Foi também sob a vigência das leis de seu reinado que ocorreu a violenta repressão à **Inconfidência Mineira (1789)** e a subsequente execução de Tiradentes (1792).
+            </p>
+
+            <!-- CONTAINER DE BOTÕES DE FECHAMENTO -->
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+                <button style="flex: 1; padding: 10px; background: #e0e0e0; color: #333; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;" 
+                        onclick="document.getElementById('modal-maria-pedro').style.display='none';">
+                    Fechar Painel
+                </button>
+                
+                <!--
+                <a href="index.html" 
+                   style="flex: 1; padding: 10px; background: #8c1d40; color: #fff; border: none; border-radius: 6px; font-weight: bold; text-decoration: none; text-align: center; font-size: 0.9rem;">
+                    Voltar para Inicial
+                </a>
+                -->
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 <!--
 
@@ -790,7 +956,64 @@
         </div>
     </div>
 
-<h1>D. Maria I (1786 ATÉ 1805)</h1>
+
+<div style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
+    
+    <!-- TÍTULO PRINCIPAL (GATILHO) -->
+    <h1 style="color: #8c1d40; cursor: pointer; display: inline-block; transition: 0.2s;" 
+        onclick="document.getElementById('modal-maria-solo').style.display='flex';"
+        onmouseover="this.style.color='#5c132a'" 
+        onmouseout="this.style.color='#8c1d40'">
+        D. Maria I (Governo Solo: 1786 ATÉ 1805)
+    </h1>
+    <p style="font-size: 0.85rem; color: #666; margin-top: -5px;">(Clique no texto acima para expandir as informações)</p>
+
+    <!-- TELA OVERLAY / PAINEL INLINE -->
+    <div id="modal-maria-solo" 
+         style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 9999;"
+         onclick="if(event.target === this) this.style.display='none';">
+        
+        <!-- CONTEÚDO DO CARD -->
+        <div style="background: #fff; padding: 30px; border-radius: 12px; max-width: 550px; width: 90%; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.3); position: relative;">
+            
+            <!-- Botão "X" superior -->
+            <span style="position: absolute; top: 10px; right: 20px; font-size: 24px; cursor: pointer; color: #aaa;" 
+                  onclick="document.getElementById('modal-maria-solo').style.display='none';">&times;</span>
+
+            <h2 style="color: #8c1d40; margin-top: 0;">D. Maria I: O Governo Solo e a Regência</h2>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Biografia:</strong> Com a morte de D. Pedro III em 1786 e de seu filho primogênito D. José em 1788, o estado de saúde mental da rainha deteriorou-se drasticamente. Em 1792, foi considerada clinicamente incapaz, fazendo com que seu filho mais novo, o futuro D. João VI, assumisse a liderança dos negócios públicos do reino.
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Atos por Portugal:</strong> O reino enfrentou o forte impacto ideológico da Revolução Francesa (1789). Sob o fantasma da deposição da monarquia na França, Portugal apertou a censura policial contra ideias iluministas. Diante da incapacidade da rainha, o príncipe D. João assumiu formalmente o título de Príncipe Regente em 1799 para lidar com as pressões internacionais de Napoleão Bonaparte e da Inglaterra.
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Atos pelo Brasil Colonial:</strong> Foi precisamente neste período de governo solo e início de regência que estourou e foi sufocada a **Inconfidência Mineira (1789)**. A rainha assinou a sentença de galés e degredo dos inconfidentes e a execução de Tiradentes (1792). Também neste intervalo, a Coroa reprimiu duramente a **Conjuração Baiana (1798)**, demonstrando intolerância absoluta a movimentos emancipacionistas na colônia.
+            </p>
+
+            <!-- CONTAINER DE BOTÕES DE FECHAMENTO -->
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+                <button style="flex: 1; padding: 10px; background: #e0e0e0; color: #333; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;" 
+                        onclick="document.getElementById('modal-maria-solo').style.display='none';">
+                    Fechar Painel
+                </button>
+                
+                <!--
+                <a href="index.html" 
+                   style="flex: 1; padding: 10px; background: #8c1d40; color: #fff; border: none; border-radius: 6px; font-weight: bold; text-decoration: none; text-align: center; font-size: 0.9rem;">
+                    Voltar para Inicial
+                </a>
+                -->
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 <!--
 
@@ -1021,8 +1244,65 @@
         </div>
     </div>
 
-<h1>D. João, Principe Regente (1802 ATÉ 1818)</h1>
 
+
+<div style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
+    
+    <!-- TÍTULO PRINCIPAL (GATILHO) -->
+    <h1 style="color: #8c1d40; cursor: pointer; display: inline-block; transition: 0.2s;" 
+        onclick="document.getElementById('modal-joao-regente').style.display='flex';"
+        onmouseover="this.style.color='#5c132a'" 
+        onmouseout="this.style.color='#8c1d40'">
+        D. João, Príncipe Regente (Regência: 1799 ATÉ 1818)
+    </h1>
+    <p style="font-size: 0.85rem; color: #666; margin-top: -5px;">(Clique no texto acima para expandir as informações)</p>
+
+    <!-- TELA OVERLAY / PAINEL INLINE -->
+    <div id="modal-joao-regente" 
+         style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 9999;"
+         onclick="if(event.target === this) this.style.display='none';">
+        
+        <!-- CONTEÚDO DO CARD -->
+        <div style="background: #fff; padding: 30px; border-radius: 12px; max-width: 550px; width: 90%; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.3); position: relative;">
+            
+            <!-- Botão "X" superior -->
+            <span style="position: absolute; top: 10px; right: 20px; font-size: 24px; cursor: pointer; color: #aaa;" 
+                  onclick="document.getElementById('modal-joao-regente').style.display='none';">&times;</span>
+
+            <h2 style="color: #8c1d40; margin-top: 0;">D. João: A Regência e a Mudança da Corte</h2>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Biografia:</strong> Nascido em Lisboa em 1767, D. João governou o império ultramarino luso como Príncipe Regente de 1799 até a morte de sua mãe, D. Maria I, em 1816, quando se tornou D. João VI. Casado com a infanta espanhola Carlota Joaquina, tomou uma das decisões mais ousadas da dinastia de Bragança: transferir a sede do reino para a América.
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Atos por Portugal:</strong> Sob a iminente ameaça de invasão das tropas napoleônicas francesas, D. João manteve uma complexa neutralidade diplomática até o limite. Em novembro de 1807, em uma manobra estratégica apoiada pela Inglaterra, embarcou com toda a corte para o Brasil, deixando Portugal sob uma junta de governo que enfrentou anos de duras batalhas na Guerra Peninsular.
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Atos pelo Brasil Colonial:</strong> Sua chegada em 1808 transformou radicalmente a colônia. Decretou a **Abertura dos Portos às Nações Amigas**, pondo fim ao exclusivo comercial metropolitano. Fundou instituições vitais como o Banco do Brasil, a Imprensa Régia e o Jardim Botânico. Em 1815, elevou o Brasil à categoria jurídica de **Reino Unido a Portugal e Algarves**, rompendo definitivamente o estatuto puramente colonial do território.
+            </p>
+
+            <!-- CONTAINER DE BOTÕES DE FECHAMENTO -->
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+                <button style="flex: 1; padding: 10px; background: #e0e0e0; color: #333; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;" 
+                        onclick="document.getElementById('modal-joao-regente').style.display='none';">
+                    Fechar Painel
+                </button>
+                
+                <!--
+                <a href="index.html" 
+                   style="flex: 1; padding: 10px; background: #8c1d40; color: #fff; border: none; border-radius: 6px; font-weight: bold; text-decoration: none; text-align: center; font-size: 0.9rem;">
+                    Voltar para Inicial
+                </a>
+                -->
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 <!--
 
@@ -1188,7 +1468,65 @@
         </div>
     </div>
 
-<h1>D. João VI (1818 ATÉ 1823)</h1>
+
+<div style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
+    
+    <!-- TÍTULO PRINCIPAL (GATILHO) -->
+    <h1 style="color: #8c1d40; cursor: pointer; display: inline-block; transition: 0.2s;" 
+        onclick="document.getElementById('modal-joao-vi').style.display='flex';"
+        onmouseover="this.style.color='#5c132a'" 
+        onmouseout="this.style.color='#8c1d40'">
+        D. João VI (Reino Unido: 1818 ATÉ 1823)
+    </h1>
+    <p style="font-size: 0.85rem; color: #666; margin-top: -5px;">(Clique no texto acima para expandir as informações)</p>
+
+    <!-- TELA OVERLAY / PAINEL INLINE -->
+    <div id="modal-joao-vi" 
+         style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 9999;"
+         onclick="if(event.target === this) this.style.display='none';">
+        
+        <!-- CONTEÚDO DO CARD -->
+        <div style="background: #fff; padding: 30px; border-radius: 12px; max-width: 550px; width: 90%; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.3); position: relative;">
+            
+            <!-- Botão "X" superior -->
+            <span style="position: absolute; top: 10px; right: 20px; font-size: 24px; cursor: pointer; color: #aaa;" 
+                  onclick="document.getElementById('modal-joao-vi').style.display='none';">&times;</span>
+
+            <h2 style="color: #8c1d40; margin-top: 0;">D. João VI: O Rei do Reino Unido</h2>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Biografia:</strong> Com a morte de D. Maria I em 1816, D. João tornou-se oficialmente monarca, sendo coroado solenemente no Rio de Janeiro em 1818 como D. João VI. Seu reinado unificado enfrentou intensas pressões políticas de ambas as margens do Atlântico, culminando no seu retorno forçado à Europa e na fragmentação do império luso-brasileiro. faleceu em Lisboa em 1826.
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Atos por Portugal:</strong> Enfrentou a **Revolução Liberal do Porto (1820)**, movimento liderado pela burguesia portuguesa que exigia uma Constituição e o retorno imediato do rei a Lisboa. Pressionado, D. João VI regressou a Portugal em 1821, jurando as bases da nova Constituição e aceitando a transição da monarquia absolutista para uma monarquia constitucional.
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Atos pelo Brasil:</strong> Durante o período em que governou como rei a partir do Rio de Janeiro, consolidou missões artísticas e científicas francesas que modernizaram a cultura local. Ao partir para Portugal em 1821, esvaziou os cofres do Banco do Brasil, mas deixou seu filho primogênito, D. Pedro, como Príncipe Regente. Essa decisão foi crucial para manter a integridade territorial e precipitar a Independência do Brasil em setembro de 1822.
+            </p>
+
+            <!-- CONTAINER DE BOTÕES DE FECHAMENTO -->
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+                <button style="flex: 1; padding: 10px; background: #e0e0e0; color: #333; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;" 
+                        onclick="document.getElementById('modal-joao-vi').style.display='none';">
+                    Fechar Painel
+                </button>
+                
+                <!--
+                <a href="index.html" 
+                   style="flex: 1; padding: 10px; background: #8c1d40; color: #fff; border: none; border-radius: 6px; font-weight: bold; text-decoration: none; text-align: center; font-size: 0.9rem;">
+                    Voltar para Inicial
+                </a>
+                -->
+                
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
 
 <!--
 
@@ -1403,7 +1741,64 @@
         </div>
     </div>
 
-<h1>D. Pedro I (1823 ATÉ 1831)</h1>
+
+<div style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
+    
+    <!-- TÍTULO PRINCIPAL (GATILHO) -->
+    <h1 style="color: #8c1d40; cursor: pointer; display: inline-block; transition: 0.2s;" 
+        onclick="document.getElementById('modal-pedro-i').style.display='flex';"
+        onmouseover="this.style.color='#5c132a'" 
+        onmouseout="this.style.color='#8c1d40'">
+        D. Pedro I (Império: 1823 ATÉ 1831)
+    </h1>
+    <p style="font-size: 0.85rem; color: #666; margin-top: -5px;">(Clique no texto acima para expandir as informações)</p>
+
+    <!-- TELA OVERLAY / PAINEL INLINE -->
+    <div id="modal-pedro-i" 
+         style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 9999;"
+         onclick="if(event.target === this) this.style.display='none';">
+        
+        <!-- CONTEÚDO DO CARD -->
+        <div style="background: #fff; padding: 30px; border-radius: 12px; max-width: 550px; width: 90%; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.3); position: relative;">
+            
+            <!-- Botão "X" superior -->
+            <span style="position: absolute; top: 10px; right: 20px; font-size: 24px; cursor: pointer; color: #aaa;" 
+                  onclick="document.getElementById('modal-pedro-i').style.display='none';">&times;</span>
+
+            <h2 style="color: #8c1d40; margin-top: 0;">D. Pedro I: O Primeiro Imperador</h2>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Biografia:</strong> Nascido em Queluz em 1798, D. Pedro foi o principal artífice da Independência do Brasil, sendo proclamado Imperador Constitucional e Defensor Perpétuo do país. Casado inicialmente com a arquiduquesa Maria Leopoldina da Áustria e depois com Amélia de Leuchtenberg, seu reinado foi marcado pelo esforço de consolidar o novo Estado e por constantes choques políticos com as lideranças liberais brasileiras.
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Atos por Portugal:</strong> Com a morte de seu pai D. João VI em 1826, herdou a coroa lusa como D. Pedro IV. Para manter o equilíbrio dinástico, outorgou a Carta Constitucional portuguesa e abdicou do trono europeu em favor de sua filha, D. Maria da Fonte (D. Maria II). Mais tarde, após abdicar no Brasil, liderou as forças liberais nas Guerras Liberais contra as pretensões absolutistas de seu irmão, D. Miguel.
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Atos pelo Brasil Imperial:</strong> Após dissolver a Assembleia Constituinte, outorgou a **Primeira Constituição do Brasil (1824)**, instituindo o Poder Moderador. Enfrentou e sufocou revoltas republicanas como a Confederação do Equador e comandou o país durante a custosa Guerra da Cisplatina. Diante do severo desgaste de sua autoridade e de uma grave crise financeira, abdicou do trono imperial em 7 de abril de 1831, deixando seu filho de apenas 5 anos, D. Pedro de Alcântara, como herdeiro.
+            </p>
+
+            <!-- CONTAINER DE BOTÕES DE FECHAMENTO -->
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+                <button style="flex: 1; padding: 10px; background: #e0e0e0; color: #333; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;" 
+                        onclick="document.getElementById('modal-pedro-i').style.display='none';">
+                    Fechar Painel
+                </button>
+                
+                <!--
+                <a href="index.html" 
+                   style="flex: 1; padding: 10px; background: #8c1d40; color: #fff; border: none; border-radius: 6px; font-weight: bold; text-decoration: none; text-align: center; font-size: 0.9rem;">
+                    Voltar para Inicial
+                </a>
+                -->
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 <!--
 
@@ -3086,7 +3481,64 @@ emenda representando a data de 1826 + a borda boné (borda descentralizada)."
         </div>
      </div>
 
-<h1>D. Pedro II (1831 ATÉ 1889)</h1>
+
+<div style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
+    
+    <!-- TÍTULO PRINCIPAL (GATILHO) -->
+    <h1 style="color: #8c1d40; cursor: pointer; display: inline-block; transition: 0.2s;" 
+        onclick="document.getElementById('modal-pedro-ii').style.display='flex';"
+        onmouseover="this.style.color='#5c132a'" 
+        onmouseout="this.style.color='#8c1d40'">
+        D. Pedro II (Império: 1831 ATÉ 1889)
+    </h1>
+    <p style="font-size: 0.85rem; color: #666; margin-top: -5px;">(Clique no texto acima para expandir as informações)</p>
+
+    <!-- TELA OVERLAY / PAINEL INLINE -->
+    <div id="modal-pedro-ii" 
+         style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; z-index: 9999;"
+         onclick="if(event.target === this) this.style.display='none';">
+        
+        <!-- CONTEÚDO DO CARD -->
+        <div style="background: #fff; padding: 30px; border-radius: 12px; max-width: 550px; width: 90%; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.3); position: relative;">
+            
+            <!-- Botão "X" superior -->
+            <span style="position: absolute; top: 10px; right: 20px; font-size: 24px; cursor: pointer; color: #aaa;" 
+                  onclick="document.getElementById('modal-pedro-ii').style.display='none';">&times;</span>
+
+            <h2 style="color: #8c1d40; margin-top: 0;">D. Pedro II: O Magnânimo</h2>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Biografia:</strong> Nascido no Rio de Janeiro em 1825, tornou-se soberano aos 5 anos com a abdicação de seu pai. Passou por uma rigorosa educação tutelar enquanto o país era governado por Regências. Casou-se com a princesa Teresa Cristina das Duas Sicílias. Conhecido como "O Magnânimo", seu governo de quase seis décadas trouxe estabilidade política e promoveu as ciências, as artes e a modernização do país.
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>A Consolidação do Trono:</strong> Diante das intensas revoltas nas províncias que ameaçavam fragmentar o território nacional, teve sua maioridade antecipada aos 14 anos no **Golpe da Maioridade (1840)**. Assumindo o trono em definitivo, conseguiu pacificar o país, instituindo o "Parlamentarismo às avessas", que alternava no poder os partidos Luzia (Liberal) e Saquarema (Conservador).
+            </p>
+            
+            <p style="line-height: 1.5; font-size: 0.95rem; color: #333; text-align: justify;">
+                <strong>Marcos e Fim do Segundo Reinado:</strong> Seu governo liderou o Brasil na vitória da Guerra do Paraguai e impulsionou a expansão ferroviária e cafeeira. No plano social, o período foi marcado pelo lento processo de abolição da escravidão, culminando na **Lei Áurea (1888)** assinada por sua filha, Princesa Isabel. O fim do regime escravocrata retirou o apoio dos grandes cafeicultores e, aliado ao descontentamento militar, levou à Proclamação da República em 15 de novembro de 1889, forçando o imperador ao exílio na Europa.
+            </p>
+
+            <!-- CONTAINER DE BOTÕES DE FECHAMENTO -->
+            <div style="display: flex; gap: 10px; margin-top: 25px;">
+                <button style="flex: 1; padding: 10px; background: #e0e0e0; color: #333; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;" 
+                        onclick="document.getElementById('modal-pedro-ii').style.display='none';">
+                    Fechar Painel
+                </button>
+                
+                <!--
+                <a href="index.html" 
+                   style="flex: 1; padding: 10px; background: #8c1d40; color: #fff; border: none; border-radius: 6px; font-weight: bold; text-decoration: none; text-align: center; font-size: 0.9rem;">
+                    Voltar para Inicial
+                </a>
+                -->
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
     <!--
 
