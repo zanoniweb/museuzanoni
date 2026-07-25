@@ -666,9 +666,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["19", "2000", "R$ 0,01", "mbc", "Matriz de cunho duplicada – na palavra 'Centavo' detalhe visível nas letras: 'c', 'e', 'n', 't', 'a', 'v' e 'o'; data, nas linhas superiores do reverso, nas linhas inferiores do reverso; nas estrelas e no valor facial (1).", "R$ 150,00"],
                     ["20", "2001", "R$ 0,01", "mbc", "Cunho Duplo – palavras 'Brasil' e 'Cabral'.", "NÃO TENHO"],
                     ["21", "2001", "R$ 0,01", "mbc", "Cunho Duplo - palavra 'Brasil' detalhe visível nas letras: 'b', 'r', 'a', 's', 'i' e 'l'. Reverso inclinado à direita.", "R$ 60,00"],
-                    
                     ["22", "2001", "R$ 0,01", "mbc", "Cunho Duplo - palavra 'Cabral'.", "R$ 30,00"] ,
-                    
                     ["23", "2002", "R$ 0,01", "mbc", "Cunho Duplo - palavra 'Brasil' detalhe visível nas letras: 's', 'i' e 'l'.", "R$ 50,00"],
                     ["24", "2002", "R$ 0,01", "mbc", "Cunho Duplo - palavra 'Brasil' detalhe visível nas letras: 'a', 's', 'i' e 'l'.", "R$ 50,00"],
                     ["25", "2002", "R$ 0,01", "mbc", "Cunho Duplo - palavra 'Brasil' detalhe visível nas letras: 'r', 'a', 's', 'i' e 'l'.", "R$ 50,00"],
@@ -775,9 +773,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["124", "1998", "R$ 0,10", "mbc", "Cunho duplo - 'Centavos' detalhe visível nas letras: 'a', 'v', 'o' e 's' e em 02 'Estrelas' do reverso. Com excesso de metal.", "R$ 75,00"],
                     ["125", "1998", "R$ 0,10", "mbc", "Matriz de cunho duplicada - 'Centavos' (detalhe visível nas letras: 'c', 'e', 'n', 't', 'a' e 'v'), 'Data', em 05 'Estrelas' do reverso, Linhas Superiores do Reverso e Linhas Inferiores do Reverso.", "NÃO TENHO"],
                     ["126", "1998", "R$ 0,10", "mbc", "Cunho duplo – palavras 'Pedro I'.", "NÃO TENHO"],
-                    
                     ["127", "1999", "R$ 0,10", "mbc", "Cunho duplo – palavras 'Pedro I'.", "R$ 50,00"],
-                
                     ["128", "2000", "R$ 0,10", "mbc", "Cunho duplo - palavra 'Brasil'.", "NÃO TENHO"],
                     ["129", "2000", "R$ 0,10", "mbc", "Cunho duplo - palavra 'Brasil' e 'espada de D. Pedro I'.", "NÃO TENHO"],
                     ["130", "2000", "R$ 0,10", "mbc", "Cunho duplo - palavra 'Centavos' (detalhe visível nas letras: 'c', 'e', 'n', 't', 'a', 'v', 'o' e 's'), 'Data' e 'Linhas Inferiores do Reverso'.", "R$ 70,00"],
@@ -949,8 +945,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["294", "2011", "R$ 0,50", "mbc", "Matriz de cunho duplicada - palavra 'Centavos' detalhe visível na letra: 'o'.", "R$ 50,00"],
                     ["295", "2011", "R$ 0,50", "mbc", "Matriz de cunho duplicada - palavra 'Centavos' detalhe visível nas letras: 'o' e 's'.", "R$ 50,00"],
                     ["296", "2011", "R$ 0,50", "mbc", "Cunho duplo - palavra 'Centavos' (detalhe visível nas letras: 'a', 'v', 'o' e 's').", "R$ 50,00"],
-                    ["297", "2011", "R$ 0,50", "mbc", "Cunho duplo - palavra 'Centavos' (detalhe visível nas letras: 't', 'a', 'v', 'o' e 's').", "R$ 50,00"],
-                    ["298", "2011", "R$ 0,50", "mbc", "Cunho duplo - na 'Data'.", "R$ 50,00"],
+                    ["297", "2011", "R$ 0,50", "mbc", "Cunho duplo - palavra 'Centavos' (detalhe visível nas letras: 'a', 'v', 'o' e 's' + cunho decentralizado).", "R$ 70,00"],
+                    ["298", "2011", "R$ 0,50", "mbc", "Cunho duplo - palavra 'Centavos' (detalhe visível nas letras: 't', 'a', 'v', 'o' e 's').", "R$ 50,00"],
+                    ["299", "2011", "R$ 0,50", "mbc", "Cunho duplo - na 'Data'.", "R$ 50,00"],
                     ["300", "2012", "R$ 0,50", "mbc", "Matriz de cunho duplicada - Centravos detalhe visível nas letras: 'a', 'v', 'o' e 's' e no 'Valor Facial (50)'.", "NÃO TENHO"],
                     ["301", "2012", "R$ 0,50", "mbc", "Cunho duplo – palavra 'Centavos' (detalhe visível nas letras: 'n', 't', 'a', 'v', 'o' e 's'), em 01 'Estrela' do reverso, 'Linhas Superiores do Reverso' e no 'Valor Facial (50)'.", "R$ 80,00"],
                     ["302", "2013", "R$ 0,50", "mbc", "Matriz de cunho duplicada - palavra 'Brasil' detalhe visível nas letras: 's' e 'l'.", "R$ 50,00"],
