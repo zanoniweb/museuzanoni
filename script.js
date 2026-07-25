@@ -331,7 +331,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["681A", "1906", "500 Réis", "MBC", "COM ACENTO e qunatidade de peças cunhadas 352.000", "R$ 60,00"],
                     ["681", "1906", "500 Réis", "MBC", "CARIMBO PARTICULAR", "R$ 120,00"],
                     ["682", "1907", "500 Réis", "MBC", "COM ACENTO e qunatidade de peças cunhadas 1.282.000", "R$ 50,00"],
-                    ["683", "1908", "500 Réis", "MBC", "COM ACENTO e qunatidade de peças cunhadas 498.000", "R$ 60,00"],
+                    ["683", "1908", "500 Réis", "MBC", "SEM ACENTO e qunatidade de peças cunhadas 498.000", "R$ 60,00"],
                     
                     ["686", "1906", "1000 Réis", "MBC", "Qunatidade de peças cunhadas 420.000", "R$ 200,00"],
                     ["687", "1907", "1000 Réis", "SOB", "Qunatidade de peças cunhadas 1.624.000", "R$ 170,00"],
@@ -1026,18 +1026,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["9", "1997", "R$ 0,01", "mbc", "Reverso Inclinado à Direita", "R$ 30,00"],
                     ["10", "1997", "R$ 0,01", "mbc", "Reverso Inclinado à Esquerda e sinal da data no anverso", "R$ 40,00"],
                     ["11", "1998", "R$ 0,01", "mbc/sob", "Reverso Inclinado a Direita", "R$ 45,00"],
-                    ["12", "1999", "R$ 0,01", "mbc", "Brasil duplo", "R$ 100,00"],
-                    ["13", "1999", "R$ 0,01", "mbc", "Brasil, Cabral e Mastro duplos", "R$ 150,00"],
-                    ["14", "1999", "R$ 0,01", "mbc", "Reverso Horizontal a Direita", "R$ 250,00"],
-                    ["15", "1999", "R$ 0,01", "mbc", "Reverso Horizontal a Esquerda", "R$ 250,00"],
-                    ["16", "1999", "R$ 0,01", "mbc/sob", "Reverso Inclinado a Direita", "R$ 60,00"],
-                    ["17", "2001", "R$ 0,01", "mbc", "Cunho com excesso de metal", "R$ 20,00"],
-                    ["18", "2001", "R$ 0,01", "mbc/sob", "Reverso Inclinado a Direita", "R$ 50,00"],
-                    ["19", "2003", "R$ 0,01", "mbc", "Reverso Horizontal a Direita", "R$ 120,00"],
-                    ["20", "2003", "R$ 0,01", "mbc", "Reverso Horizontal a Esquerda", "R$ 120,00"],
-                    ["21", "2003", "R$ 0,01", "mbc/sob", "Reverso Inclinado a Direita", "R$ 100,00"],
-                    ["22", "2004", "R$ 0,01", "mbc", "Cunho com excesso de metal", "R$ 20,00"],
-                    ["23", "2004", "R$ 0,01", "mbc", "Reverso Inclinado à Direita", "R$ 30,00"],
+                    ["12", "1999", "R$ 0,01", "mbc", "Reverso Horizontal a Direita", "R$ 250,00"],
+                    ["13", "1999", "R$ 0,01", "mbc", "Reverso Horizontal a Esquerda", "R$ 250,00"],
+                    ["14", "1999", "R$ 0,01", "mbc/sob", "Reverso Inclinado a Direita", "R$ 60,00"],
+                    ["15", "2001", "R$ 0,01", "mbc", "Cunho com excesso de metal", "R$ 20,00"],
+                    ["16", "2001", "R$ 0,01", "mbc/sob", "Reverso Inclinado a Direita", "R$ 50,00"],
+                    ["17", "2003", "R$ 0,01", "mbc", "Reverso Horizontal a Direita", "R$ 120,00"],
+                    ["18", "2003", "R$ 0,01", "mbc", "Reverso Horizontal a Esquerda", "R$ 120,00"],
+                    ["19", "2003", "R$ 0,01", "mbc/sob", "Reverso Inclinado a Direita", "R$ 100,00"],
+                    ["20", "2004", "R$ 0,01", "mbc", "Cunho com excesso de metal", "R$ 20,00"],
+                    ["21", "2004", "R$ 0,01", "mbc", "Reverso Inclinado à Direita", "R$ 30,00"],
 
                     ["1", "1994", "R$ 0,05", "MBC", "Cunho com excesso de metal", "R$ 15,00"],
                     ["2", "1994", "R$ 0,05", "MBC", "Cunho Marcado - Sinal da data no anverso", "R$ 15,00"],
@@ -1671,7 +1669,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["29", "2019", "0,10", "SOB", "12 X 6,00", "R$ 72,00"],
                     ["30", "1995", "0,25", "MBC", "50 X 12,00", "R$ 625,00"],
                     ["31", "1998", "0,25", "MBC", "34 X 7,00", "R$ 238,00"],
-                    ["32", "1999", "0,25", "MBC", "34 X 40,00", "R$ 1360,00"],
+                    ["32", "1999", "0,25", "MBC", "35 X 40,00", "R$ 1400,00"],
                     ["33", "2000", "0,25", "MBC", "23 X 60,00", "R$ 1380,00"],
                     ["34", "2014", "0,25", "MBC", "51 X 30,00", "R$ 1530,00"],
                     ["35", "2016", "0,25", "MBC", "10 X 50,00", "R$ 500,00"],
@@ -1854,3 +1852,6 @@ document.addEventListener("DOMContentLoaded", function () {
           resposta.innerText = 'Erro ao carregar a página.';
         }
       }
+
+      // CÓDIGO PARA TÍTULOS
+      
