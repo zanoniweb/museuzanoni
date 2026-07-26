@@ -1308,7 +1308,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["270", "1958", "0,50 de Cruzeio", "MBC+/SOB", "Qunatidade de peças cunhadas 59.815.000", "R$ 15,00"],
                     ["271", "1959", "0,50 de Cruzeio", "MBC+/SOB", "Qunatidade de peças cunhadas 32.891.000", "R$ 15,00"],
                     ["274", "1957", "1,00 Cruzeio", "MBC+/SOB", "Qunatidade de peças cunhadas 11.849.000", "R$ 25,00"],
-                    ["283", "1961", "2,00 Cruzeio", "MBC+/SOB", "Qunatidade de peças cunhadas 49.808.000", "R$ 20,00"],
+                    ["283", "1961", "2,00 Cruzeios", "MBC+/SOB", "Qunatidade de peças cunhadas 49.808.000", "R$ 20,00"],
                     ["286", "1965", "50 Cruzeios", "MBC+/SOB", "Qunatidade de peças cunhadas 18.001.000", "R$ 7,00"],
                     
                     ["287", "1967", "1 Centavo", "MBC", "Qunatidade de peças cunhadas 100.246.000", "R$ 3,50"],
