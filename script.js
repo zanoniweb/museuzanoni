@@ -994,20 +994,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 anomalas_1: [
                    
-                    ["1", "1922", "500 Réis", "mbc", "Reverso Inclinado a Direita", "R$ 100,00"],
+                    ["1", "1922", "500 Réis", "mbc", "Reverso Inclinado à Direita", "R$ 100,00"],
                     ["2", "1924", "1000 Réis", "mbc", "Carimbo Particular - 1896", "R$ 30,00"],
+                    ["3", "1937", "400 Réis", "MBC", "Reverso Inclinado à Direita", "R$ 100,00"],
                     
-                    ["3", "1945", "10 Centavos", "mbc", "Cunho Duplo - Brasil", "R$ 40,00"],
+                    ["4", "1945", "10 Centavos", "mbc", "Cunho Duplo - Brasil", "R$ 40,00"],
 
-                    ["4", "1969", "2 Centavos", "mbc", "Reverso Inclinado a Esquerda", "R$ 30,00"],
+                    ["5", "1969", "2 Centavos", "mbc", "Reverso Inclinado a Esquerda", "R$ 30,00"],
 
-                    ["5", "1986", "20 Centavos", "sob/fc", "Cunho Duplo - Brasil", "R$ 30,00"],
-                    ["6", "1990", "5 Cruzeiros", "mbc/sob", "Cunho Marcado - no Anvero, ou seja, perto da enxada", "R$ 35,00"],
-                    ["7", "1991", "10 Cruzeiros", "mbc/sob", "Cunho Duplo - Data e linhas", "R$ 20,00"],
-                    ["8", "1992", "500 Cruzeiros", "mbc/sob", "Cunho Marcado - no Reverso", "R$ 30,00"],
-                    ["9", "1992", "500 Cruzeiros", "mbc/sob", "Cunho Marcado - no Reverso, ou seja, com sinais da tartaruga marinha", "R$ 30,00"],
-                    ["10", "1993", "1000 Cruzeiros", "mbc/sob", "Cunho Duplo - Acara e Brasil", "R$ 20,00"],
-                    ["11", "1993", "1000 Cruzeiros", "mbc/sob", "Cunho Duplo - Acara, Brasil e Cruzeiro", "R$ 25,00"],
+                    ["6", "1986", "20 Centavos", "sob/fc", "Cunho Duplo - Brasil", "R$ 30,00"],
+                    ["7", "1990", "5 Cruzeiros", "mbc/sob", "Cunho Marcado - no Anvero, ou seja, perto da enxada", "R$ 35,00"],
+                    ["8", "1991", "10 Cruzeiros", "mbc/sob", "Cunho Duplo - Data e linhas", "R$ 20,00"],
+                    ["9", "1992", "500 Cruzeiros", "mbc/sob", "Cunho Marcado - no Reverso", "R$ 30,00"],
+                    ["10", "1992", "500 Cruzeiros", "mbc/sob", "Cunho Marcado - no Reverso, ou seja, com sinais da tartaruga marinha", "R$ 30,00"],
+                    ["11", "1993", "1000 Cruzeiros", "mbc/sob", "Cunho Duplo - Acara e Brasil", "R$ 20,00"],
+                    ["12", "1993", "1000 Cruzeiros", "mbc/sob", "Cunho Duplo - Acara, Brasil e Cruzeiro", "R$ 25,00"],
 
                 ],
 
@@ -1277,8 +1278,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["146", "1936", "300 Réis", "MBC", "Qunatidade de peças cunhadas 2.256.000*", "R$ 12,00"],
                     ["147", "1937", "300 Réis", "MBC", "Qunatidade de peças cunhadas 4.507.000", "R$ 12,00"],
                     ["148", "1938", "300 Réis", "MBC", "Qunatidade de peças cunhadas 3.752.000", "R$ 12,00"],
-                    ["149", "1936", "400 Réis", "MBC", "Qunatidade de peças cunhadas 3.927.000", "R$ 12,00"],
-                    ["150", "1937", "400 Réis", "MBC", "Qunatidade de peças cunhadas 3.111.000", "R$ 12,00"],
+                    ["149", "1936", "400 Réis", "MBC", "Qunatidade de peças cunhadas 3.927.000", "R$ 12,00"],                    
                     ["151", "1938", "400 Réis", "MBC", "Qunatidade de peças cunhadas 2.680.500", "R$ 12,00"],
                     ["158", "1937", "1000 Réis", "MBC", "Qunatidade de peças cunhadas", "R$ 10,00"],
                     ["159", "1938", "1000 Réis", "MBC", "Qunatidade de peças cunhadas", "R$ 10,00"],
@@ -1698,7 +1698,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["28", "2018", "0,10", "SOB", "4 X 5,00", "R$ 20,00"],
                     ["29", "2019", "0,10", "SOB", "12 X 6,00", "R$ 72,00"],
                     ["30", "1995", "0,25", "MBC", "50 X 12,00", "R$ 625,00"],
-                    ["31", "1998", "0,25", "MBC", "34 X 7,00", "R$ 238,00"],
+                    ["31", "1998", "0,25", "MBC", "35 X 7,00", "R$ 245,00"],
                     ["32", "1999", "0,25", "MBC", "35 X 40,00", "R$ 1400,00"],
                     ["33", "2000", "0,25", "MBC", "23 X 60,00", "R$ 1380,00"],
                     ["34", "2014", "0,25", "MBC", "51 X 30,00", "R$ 1530,00"],
@@ -1777,7 +1777,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["53", "1998", "0,10", "MBC", "4 x Borrada - 30,00", "R$ 120,00"],
                     ["54", "1996", "0,10", "MBC", "2 x Cunho duplo Brasil + sinal da data no anverso - 25,00", "R$ 50,00"],
                     ["55", "1997", "0,10", "MBC", "4 x Cunho duplo Brasil + sinal da data no anverso - 25,00", "R$ 100,00"],
-                    ["56", "1997", "0,10", "MBC", "1 x Cunho duplo Data - 15,00", "R$ 15,00"],
+                    ["56", "1997", "0,10", "MBC", "2 x Cunho duplo Data - 15,00", "R$ 30,00"],
                     ["57", "2000", "0,10", "MBC", "1 x Cunho duplo Pedro I - 25,00", "R$ 25,00"],
                     ["58", "2001", "0,10", "MBC", "1 x Cunho duplo Pedro I - 20,00", "R$ 20,00"],
                     ["59", "2002", "0,10", "MBC", "1 x Cunho duplo Pedro I - 40,00", "R$ 40,00"],
