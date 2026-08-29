@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["579", "1823R", "20 Réis", "MBC-", "D. Pedro I - 22 Tulipas, Florões Verticais, Diâmetro: 28,0 mm, Peso: 4,0 g, Grãos de Café: Gastos, Folhas de Tabaco: 12, Q.: 1.700.000", "R$ 150,00"], 
                     ["580", "1824R", "20 Réis", "UTG/BC", "D. Pedro I - Tulipas Gastas, Florões Oblíquos, Diâmetro: 30 mm, Peso: 5,4 g, Grãos de Café: Gastos, Folhas de Tabaco: 12, Q.: 4.955.564", "R$ 20,00"],
                     ["581", "1825R", "20 Réis", "BC/MBC", "D. Pedro I - 22 Tulipas, Florões Verticais, Diâmetro: 30,0 mm, Peso: 5,6 g, Grãos de Café: 11, Folhas de Tabaco: Gastos, Q.: 9.053.601, Observação com Talho de Lei", "R$ 180,00"],
-                    ["582", "1826R", "20 Réis", "BC/MBC", "D. Pedro I - 22 Tulipas, Florões Verticais, Diâmetro: mm, Peso: g, Grãos de Café: 13, Folhas de Tabaco: 12, Qunatidade de peças cunhadas 4.419.171", "R$ 105,00"],
+                    ["582", "1826R", "20 Réis", "BC/MBC", "D. Pedro I - 22 Tulipas, Florões Verticais, Diâmetro: 30,0 mm, Peso: 4,1 g, Grãos de Café: 13, Folhas de Tabaco: 12, Qunatidade de peças cunhadas 4.419.171", "R$ 105,00"],
                     ["583", "1827R", "20 Réis", "MBC", "D. Pedro I - 25 Tulipas, Florões Oblíquos, Diâmetro: 29 mm, Peso: 4,1 g, Grãos de Café: 10, Folhas de Tabaco: 12, Q.: 4.648.267", "R$ 110,00"],
                     ["584", "1828R", "20 Réis", "BC", "D. Pedro I - 23 Tulipas, Florões Verticais, Diâmetro: 29 mm, Peso: 4,7 g, Grãos de Café: 12, Folhas de Tabaco: 12, Q.: 4.474.303", "R$ 30,00"], 
                     ["585", "1829R", "20 Réis", "BC", "D. Pedro I - 24 Tulipas, Florões Oblíquos, Diâmetro: 29 mm, Peso: 7,1 g, Grãos de Café: 10, Folhas de Tabaco: 12, Q.: 6.806.736", "R$ 30,00"], 
