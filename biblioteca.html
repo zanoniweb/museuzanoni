@@ -20,7 +20,7 @@
         body {
             color: var(--text-gray);
             background-color: var(--bg-black);
-            font-family: 'Cinzel', serif, 'Segoe UI', serif; /* Fonte clássica para museus */
+            font-family: 'Cinzel', serif, 'Segoe UI', serif;
             margin: 0;
             line-height: 1.6;
         }
@@ -67,16 +67,82 @@
             margin-bottom: 5px;
         }
 
+        /* Estilização da Barra de Pesquisa e Botões */
+        .search-container {
+            max-width: 800px;
+            margin: 30px auto 10px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 14px 20px;
+            background-color: #151515;
+            border: 1px solid var(--gold);
+            color: white;
+            font-size: 14px;
+            letter-spacing: 1px;
+            box-sizing: border-box;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .search-input:focus {
+            box-shadow: 0 0 12px rgba(197, 160, 89, 0.4);
+            background-color: #1a1a1a;
+        }
+
+        .search-input::placeholder {
+            color: #777;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .btn-search {
+            background: #151515;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 20px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+
+        .btn-search:hover {
+            background: var(--gold);
+            color: black;
+        }
+
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-style: italic;
+        }
+
         .library-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
             max-width: 1300px;
-            margin: 40px auto;
+            margin: 30px auto 40px auto;
             padding: 0 20px;
         }
 
-        /* Ficha Técnica (Card) */
         .book-card {
             background-color: var(--card-bg);
             border-left: 4px solid var(--gold);
@@ -166,7 +232,6 @@
 
         .footer-logo { width: 100px; filter: grayscale(1); margin-top: 10px; }
 
-        /* Esconder tabela original usada apenas para o motor do PDF */
         #tabela1 { display: none; }
     </style>
 </head>
@@ -187,11 +252,25 @@
 </header>
 
 <main>
-    <div class="library-grid" id="grid-livros">
+    <!-- Campo de Busca e Botões Adicionados -->
+    <div class="search-container">
+        <div class="search-box">
+            <input 
+                type="text" 
+                id="search-input" 
+                class="search-input" 
+                placeholder="Pesquisar por título, autor, ano ou palavras-chave..." 
+                onkeyup="filtrarObras()"
+            >
+            <button class="btn-search" onclick="limparBusca()">Limpar</button>
+            <button class="btn-search" onclick="retornarPaginaOriginal()">Retornar</button>
         </div>
+    </div>
+
+    <div class="library-grid" id="grid-livros"></div>
 
     <table id="tabela1">
-        <thead><tr><th>Título</th><th>Ano</th><th>Páginas</th></tr></thead>
+        <thead><tr><th>Título</th><th>Autor</th><th>Ano</th><th>Páginas</th></tr></thead>
         <tbody id="tabela-body"></tbody>
     </table>
 
@@ -210,39 +289,49 @@
 <script>
     // Base de Dados das Obras
     const obras = [
-        { t: "A INFLUÊNCIA ALEMÃ NA FILATELIA BRASILEIRA", a: "2024", p: "7 páginas", d: "Artigo histórico e ilustrativo", link: "https://online.fliphtml5.com/lusnq/fjey/" },
-        { t: "AS VARIAÇÕES DAS MOEDAS DE COBRE DO BRASIL", a: "2024", p: "113 páginas", d: "Colônia, Reino Unido e Império", link: "https://online.fliphtml5.com/lusnq/enbq/" },
-        { t: "COLEÇÃO DE BILHETES POSTAIS E CARTAS BILHETES DE JULIANO ZANONI DO BRASIL IMPERIAL ATÉ A REPÚBNLICA VELHA: NOVOS E USADOS E OBSERVA-SE QUE O MATERIAL MANUSCRITO A PENA FOI ANALISADO COM INTELIGÊNCIA ARTIFICIAL", a: "2026", p: "70 páginas", d: "Bilehtes do séuxlos XIX ao começo do século XX", link: "https://online.fliphtml5.com/lusnq/hyeo/" },
-        { t: "CATÁLOGO DAS MOEDAS COMUNS DO PLANO REAL", a: "2024", p: "54 páginas", d: "Material Descritivo", link: "https://online.fliphtml5.com/lusnq/zxjk/" },
-        { t: "CATÁLOGO DAS MOEDAS COMUNS DO PLANO REAL", a: "2025", p: "54 páginas", d: "Material Descritivo", link: "https://online.fliphtml5.com/lusnq/btwo/" },
-        { t: "CATÁLOGO PARA MATRIZES DE CUNHOS DUPLICADOS (PLANO REAL)", a: "2024", p: "217 páginas", d: "Material descritivo e imagens ilustrativas", link: "https://online.fliphtml5.com/lusnq/qtft/" },
-        { t: "CATÁLOGO PARA MATRIZES DE CUNHOS DUPLICADOS (PLANO REAL)", a: "2025", p: "227 páginas", d: "Material descritivo e imagens ilustrativas", link: "https://online.fliphtml5.com/lusnq/iezr/" },
-        { t: "CATÁLOGO PARA MATRIZES DE CUNHOS DUPLICADOS (PLANO REAL)", a: "2026", p: "227 páginas", d: "Edição atualizada com imagens ilustrativas", link: "https://online.fliphtml5.com/lusnq/nfvx/" },
-        { t: "COLEÇÃO NUMISMÁTICA ZANONI: CÉDULAS DE OCUPAÇÃO JAPONESA DURANTE A SEGUNDA GUERRA MUNDIAL EM UM BREVE ESTUDO NUMISMÁTICO.", a: "2026", p: "28 páginas", d: "Material histórico e ilustrativo", link: "https://online.fliphtml5.com/lusnq/csus/" },
-        { t: "COMO COLECIONAR FICHAS", a: "2024", p: "207 páginas", d: "Abordagem histórica e contemporânea", link: "https://online.fliphtml5.com/lusnq/ylra/" },
-        { t: "ESTUDO NUMISMÁTICO DAS ANOMALIAS DO PLANO REAL", a: "2024", p: "242 páginas", d: "Imagens coloridas de alta definição", link: "https://online.fliphtml5.com/lusnq/rizy/" },
-        { t: "A MOEDA DE R$ 0,50 1994 - FALSIFICAÇÕES", a: "2024", p: "16 páginas", d: "Artigo técnico sobre falsificações", link: "https://online.fliphtml5.com/lusnq/gzsv/" },
-        { t: "COLEÇÃO ZANONI: MOEDAS DE COBRE IMPERIAL", a: "2025", p: "226 páginas", d: "Versão ilustrada com imagens coloridas", link: "https://online.fliphtml5.com/lusnq/ntnd/" },
-        { t: "COLEÇÃO ZANONI: R$ 0,05 DUPLICIDADE", a: "2024", p: "185 páginas", d: "Estudo detalhado de duplicidade", link: "https://online.fliphtml5.com/lusnq/ofeq/" },
-        { t: "COLEÇÃO ZANONI: R$ 0,05 EXCESSO DE METAL", a: "2024", p: "14 páginas", d: "Imagens de erros de cunhagem", link: "https://online.fliphtml5.com/lusnq/rwwh/" },
-        { t: "COLEÇÃO ZANONI: R$ 0,05 EXCESSO DE METAL", a: "2025", p: "18 páginas", d: "Imagens de erros de cunhagem", link: "https://online.fliphtml5.com/lusnq/iluf/" },
-        { t: "COLEÇÃO ZANONI: R$ 0,10 1ª FAMÍLIA DUPLICIDADE", a: "2024", p: "85 páginas", d: "Estudo ilustrado", link: "https://online.fliphtml5.com/lusnq/uhtw/" },
-        { t: "COLEÇÃO ZANONI: R$ 0,10 2ª FAMÍLIA DUPLICIDADE", a: "2024", p: "194 páginas", d: "Estudo ilustrado", link: "https://online.fliphtml5.com/lusnq/dmqv/" },
-        { t: "COLEÇÃO ZANONI: R$ 0,50 DUPLICIDADE", a: "2024", p: "116 páginas", d: "Estudo ilustrado", link: "https://online.fliphtml5.com/lusnq/qvbl/" },
-        { t: "COLEÇÃO ZANONI: R$ 1,00 DUPLICIDADE", a: "2024", p: "68 páginas", d: "Estudo ilustrado", link: "https://online.fliphtml5.com/lusnq/widy/" }
+        { t: "A INFLUÊNCIA ALEMÃ NA FILATELIA BRASILEIRA", autor: "Juliano Zanoni", a: "2024", p: "7 páginas", d: "Artigo histórico e ilustrativo", link: "https://online.fliphtml5.com/lusnq/fjey/" },
+        { t: "A MOEDA DE R$ 0,50 1994 - FALSIFICAÇÕES", autor: "Juliano Zanoni", a: "2024", p: "16 páginas", d: "Artigo técnico sobre falsificações", link: "https://online.fliphtml5.com/lusnq/gzsv/" },
+        { t: "AS VARIAÇÕES DAS MOEDAS DE COBRE DO BRASIL", autor: "Juliano Zanoni", a: "2024", p: "113 páginas", d: "Colônia, Reino Unido e Império", link: "https://online.fliphtml5.com/lusnq/enbq/" },
+        { t: "CATÁLOGO DAS MOEDAS COMUNS DO PLANO REAL", autor: "Juliano Zanoni", a: "2024", p: "54 páginas", d: "Material Descritivo", link: "https://online.fliphtml5.com/lusnq/zxjk/" },
+        { t: "CATÁLOGO DAS MOEDAS COMUNS DO PLANO REAL", autor: "Juliano Zanoni", a: "2025", p: "54 páginas", d: "Material Descritivo", link: "https://online.fliphtml5.com/lusnq/btwo/" },
+        { t: "CATÁLOGO PARA MATRIZES DE CUNHOS DUPLICADOS (PLANO REAL)", autor: "Juliano Zanoni", a: "2024", p: "217 páginas", d: "Material descritivo e imagens ilustrativas", link: "https://online.fliphtml5.com/lusnq/qtft/" },
+        { t: "CATÁLOGO PARA MATRIZES DE CUNHOS DUPLICADOS (PLANO REAL)", autor: "Juliano Zanoni", a: "2025", p: "227 páginas", d: "Material descritivo e imagens ilustrativas", link: "https://online.fliphtml5.com/lusnq/iezr/" },
+        { t: "CATÁLOGO PARA MATRIZES DE CUNHOS DUPLICADOS (PLANO REAL)", autor: "Juliano Zanoni", a: "2026", p: "227 páginas", d: "Edição atualizada com imagens ilustrativas", link: "https://online.fliphtml5.com/lusnq/nfvx/" },
+        { t: "COLEÇÃO NUMISMÁTICA ZANONI: CÉDULAS DE OCUPAÇÃO JAPONESA DURANTE A SEGUNDA GUERRA MUNDIAL EM UM BREVE ESTUDO NUMISMÁTICO.", autor: "Juliano Zanoni", a: "2026", p: "28 páginas", d: "Material histórico e ilustrativo", link: "https://online.fliphtml5.com/lusnq/csus/" },
+        { t: "COMO COLECIONAR FICHAS", autor: "Juliano Zanoni", a: "2024", p: "207 páginas", d: "Abordagem histórica e contemporânea", link: "https://online.fliphtml5.com/lusnq/ylra/" },
+        { t: "COLEÇÃO DE BILHETES POSTAIS E CARTAS BILHETES DE JULIANO ZANONI DO BRASIL IMPERIAL ATÉ A REPÚBNLICA VELHA: NOVOS E USADOS E OBSERVA-SE QUE O MATERIAL MANUSCRITO A PENA FOI ANALISADO COM INTELIGÊNCIA ARTIFICIAL", autor: "Juliano Zanoni", a: "2026", p: "70 páginas", d: "Bilehtes do séuxlos XIX ao começo do século XX", link: "https://online.fliphtml5.com/lusnq/hyeo/" },
+        { t: "COLEÇÃO ZANONI: MOEDAS DE COBRE IMPERIAL", autor: "Juliano Zanoni", a: "2025", p: "226 páginas", d: "Versão ilustrada com imagens coloridas", link: "https://online.fliphtml5.com/lusnq/ntnd/" },
+        { t: "COLEÇÃO ZANONI: R$ 0,05 DUPLICIDADE", autor: "Juliano Zanoni", a: "2024", p: "185 páginas", d: "Estudo detalhado de duplicidade", link: "https://online.fliphtml5.com/lusnq/ofeq/" },
+        { t: "COLEÇÃO ZANONI: R$ 0,05 EXCESSO DE METAL", autor: "Juliano Zanoni", a: "2024", p: "14 páginas", d: "Imagens de erros de cunhagem", link: "https://online.fliphtml5.com/lusnq/rwwh/" },
+        { t: "COLEÇÃO ZANONI: R$ 0,05 EXCESSO DE METAL", autor: "Juliano Zanoni", a: "2025", p: "18 páginas", d: "Imagens de erros de cunhagem", link: "https://online.fliphtml5.com/lusnq/iluf/" },
+        { t: "COLEÇÃO ZANONI: R$ 0,10 1ª FAMÍLIA DUPLICIDADE", autor: "Juliano Zanoni", a: "2024", p: "85 páginas", d: "Estudo ilustrado", link: "https://online.fliphtml5.com/lusnq/uhtw/" },
+        { t: "COLEÇÃO ZANONI: R$ 0,10 2ª FAMÍLIA DUPLICIDADE", autor: "Juliano Zanoni", a: "2024", p: "194 páginas", d: "Estudo ilustrado", link: "https://online.fliphtml5.com/lusnq/dmqv/" },
+        { t: "COLEÇÃO ZANONI: R$ 0,50 DUPLICIDADE", autor: "Juliano Zanoni", a: "2024", p: "116 páginas", d: "Estudo ilustrado", link: "https://online.fliphtml5.com/lusnq/qvbl/" },
+        { t: "COLEÇÃO ZANONI: R$ 1,00 DUPLICIDADE", autor: "Juliano Zanoni", a: "2024", p: "68 páginas", d: "Estudo ilustrado", link: "https://online.fliphtml5.com/lusnq/widy/" },
+        { t: "ESTUDO NUMISMÁTICO DAS ANOMALIAS DO PLANO REAL", autor: "Juliano Zanoni", a: "2024", p: "242 páginas", d: "Imagens coloridas de alta definição", link: "https://online.fliphtml5.com/lusnq/rizy/" },
+        { t: "Manual descritivo para catalogar as moedas circulantes do Plano Real: bonés, cunhos entupidos, cunhos enrugados, cunhos gastos, cunhos marcados, cunhos quebrados, cunhos trincados, final de chapa, moedas falsas, reversos horizontais, reversos inclinados e reversos invertidos.", autor: "Juliano Zanoni", a: "2026", p: "76 páginas", d: "Estudo ilustrado", link: "https://online.fliphtml5.com/lusnq/pyti/" }
     ];
 
-    function renderizarBiblioteca() {
+    function renderizarBiblioteca(lista = obras) {
         const grid = document.getElementById('grid-livros');
         const tabela = document.getElementById('tabela-body');
         
-        obras.forEach(obra => {
-            // Criar Card Visual
+        grid.innerHTML = '';
+        tabela.innerHTML = '';
+
+        if (lista.length === 0) {
+            grid.innerHTML = `<div class="no-results">Nenhum livro ou artigo encontrado para o termo pesquisado.</div>`;
+            return;
+        }
+
+        lista.forEach(obra => {
+            // Renderiza Ficha Técnica (Card Visual)
             grid.innerHTML += `
                 <div class="book-card">
                     <div>
                         <div class="book-title">${obra.t}</div>
                         <div class="tech-info">
+                            <div><span class="tech-label">Autor:</span> ${obra.autor}</div>
                             <div><span class="tech-label">Ano:</span> ${obra.a}</div>
                             <div><span class="tech-label">Extensão:</span> ${obra.p}</div>
                             <div><span class="tech-label">Descrição:</span> ${obra.d}</div>
@@ -251,9 +340,40 @@
                     <a href="${obra.link}" class="btn-access" target="_blank">Consultar Obra</a>
                 </div>
             `;
-            // Popular Tabela Oculta para o PDF
-            tabela.innerHTML += `<tr><td>${obra.t}</td><td>${obra.a}</td><td>${obra.p}</td></tr>`;
+            
+            // Renderiza Tabela para a exportação em PDF
+            tabela.innerHTML += `<tr><td>${obra.t}</td><td>${obra.autor}</td><td>${obra.a}</td><td>${obra.p}</td></tr>`;
         });
+    }
+
+    // Função responsável pela filtragem em tempo real
+    function filtrarObras() {
+        const termo = document.getElementById('search-input').value.toLowerCase().trim();
+
+        const obrasFiltradas = obras.filter(obra => {
+            const titulo = obra.t.toLowerCase();
+            const autor = obra.autor.toLowerCase();
+            const ano = obra.a.toLowerCase();
+            const descricao = obra.d.toLowerCase();
+
+            return titulo.includes(termo) || 
+                   autor.includes(termo) || 
+                   ano.includes(termo) || 
+                   descricao.includes(termo);
+        });
+
+        renderizarBiblioteca(obrasFiltradas);
+    }
+
+    // Limpa a caixa de texto da busca e restaura a visualização completa
+    function limparBusca() {
+        document.getElementById('search-input').value = '';
+        renderizarBiblioteca(obras);
+    }
+
+    // Recarrega a página HTML completamente
+    function retornarPaginaOriginal() {
+        window.location.reload();
     }
 
     function salvarTabelaComoPDF(tabelaId, nomeArquivo) {
@@ -270,6 +390,7 @@
         doc.save(`${nomeArquivo}.pdf`);
     }
 
+    // Inicializa a renderização com a lista completa
     renderizarBiblioteca();
 </script>
 
