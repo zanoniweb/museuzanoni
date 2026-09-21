@@ -136,6 +136,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     ["604", "1823R", "40 Réis c. g. de 20 Réis", "MBC", "D. Pedro I - 29 Tulipas, Florões Verticais, Diâmetro: 36 mm, Peso: 15,1 g, Grãos de Café: 13, Folhas de Tabaco: 12", "R$ 60,00"], 
                     ["605", "1824R", "40 Réis c. g. de 20 Réis", "UTG", "D. Pedro I - 26 Tulipas, Florões Verticais, Diâmetro: 35 mm, Peso: 11,0 g, Grãos de Café: gastos, Folhas de Tabaco: 12", "R$ 15,00"],
                     ["605", "1824R", "40 Réis c. g. de 20 Réis", "MBC", "D. Pedro I - 27 Tulipas, Florões Oblíquos, Diâmetro: 36 mm, Peso: 14,1 g, Grãos de Café: 9, Folhas de Tabaco: 12", "R$ 60,00"],
+                    
+                    ["605", "1824R", "40 Réis c. g. de 20 Réis", "MBC", "D. Pedro I - 27 Tulipas, Florões ???, Diâmetro: ??? mm, Peso: ??? g, Grãos de Café: ??, Folhas de Tabaco: ?? e Borda Boné", "R$ 100,00"],
+                    
                     ["605", "1824R", "40 Réis c. g. de 20 Réis", "MBC", "D. Pedro I - 28 Tulipas, Florões Verticais, Diâmetro: 35 mm, Peso: 14,0 g, Grãos de Café: 12, Folhas de Tabaco: 12, Observação borda boné.", "R$ 60,00"], 
                     ["606", "1825R", "40 Réis c. g. de 20 Réis", "MBC", "D. Pedro I - 26 Tulipas, Florões Oblíquos, Diâmetro: 35 mm, Peso: 15,9 g, Grãos de Café: 12, Folhas de Tabaco: 12", "R$ 60,00"], 
                     ["607", "1826R", "40 Réis c. g. de 20 Réis", "MBC", "D. Pedro I - 24 Tulipas, Florões Verticais, Diâmetro: 36 mm, Peso: 11,7 g, Grãos de Café: 12, Folhas de Tabaco: 12, Cunho Duplo – no anverso + boné", "R$ 60,00"], 
@@ -1262,12 +1265,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 outros: [
                     ["56", "MCMI", "400 Réis", "MBC-", "Qunatidade de peças cunhadas", "R$ 10,00"],
+                   
+                    ["58", "1919", "20 Réis", "SOB", "Qunatidade de peças cunhadas 2.870.000", "R$ 40,00"],
                     ["59", "1920", "20 Réis", "MBC", "Qunatidade de peças cunhadas 825.000", "R$ 20,00"],
+
+                    ["64", "1919", "50 Réis", "SOB", "Qunatidade de peças cunhadas 558.000", "R$ 40,00"],
+                    
                     ["79", "1925", "100 Réis", "MBC", "Qunatidade de peças cunhadas", "R$ 10,00"],
                     ["81", "1927", "100 Réis", "MBC-", "Qunatidade de peças cunhadas", "R$ 10,00"],
                     ["85", "1931", "100 Réis", "MBC", "Qunatidade de peças cunhadas 2.500.000", "R$ 10,00"],
                     ["88", "1934", "100 Réis", "MBC", "Qunatidade de peças cunhadas 3.614.000", "R$ 8,00"],
                     ["89", "1935", "100 Réis", "MBC", "Qunatidade de peças cunhadas 3.442.000", "R$ 8,00"],
+                    
                     ["123", "1922", "1000 Réis", "MBC", "Disco grosso e qunatidade de peças cunhadas 16.698.000", "R$ 15,00"],
                     ["125", "1927", "500 Réis", "MBC", "Qunatidade de peças cunhadas 2.724.900", "R$ 8,00"],
                     ["128", "1924", "1000 Réis", "MBC", "Qunatidade de peças cunhadas", "R$ 10,00"],
