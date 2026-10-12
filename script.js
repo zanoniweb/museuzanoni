@@ -1028,13 +1028,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     ["5", "1969", "2 Centavos", "mbc", "Reverso Inclinado a Esquerda", "R$ 30,00"],
 
-                    ["6", "1986", "20 Centavos", "sob/fc", "Cunho Duplo - Brasil", "R$ 30,00"],
-                    ["7", "1990", "5 Cruzeiros", "mbc/sob", "Cunho Marcado - no Anvero, ou seja, perto da enxada", "R$ 35,00"],
-                    ["8", "1991", "10 Cruzeiros", "mbc/sob", "Cunho Duplo - Data e linhas", "R$ 20,00"],
-                    ["9", "1992", "500 Cruzeiros", "mbc/sob", "Cunho Marcado - no Reverso", "R$ 30,00"],
-                    ["10", "1992", "500 Cruzeiros", "mbc/sob", "Cunho Marcado - no Reverso, ou seja, com sinais da tartaruga marinha", "R$ 30,00"],
-                    ["11", "1993", "1000 Cruzeiros", "mbc/sob", "Cunho Duplo - Acara e Brasil", "R$ 20,00"],
-                    ["12", "1993", "1000 Cruzeiros", "mbc/sob", "Cunho Duplo - Acara, Brasil e Cruzeiro", "R$ 25,00"],
+                    ["6", "1986", "10 Centavos", "mbc", "Letra N de Centavos preenchida com metal", "R$ 15,00"],
+                    ["7", "1987", "10 Centavos", "mbc", "Cunho Marcado no reverso circulo visualizado no valor 10", "R$ 15,00"],
+                    ["8", "1986", "20 Centavos", "sob/fc", "Cunho Duplo - Brasil", "R$ 30,00"],
+                    
+                    ["9", "1990", "5 Cruzeiros", "mbc/sob", "Cunho Marcado - no Anvero, ou seja, perto da enxada", "R$ 35,00"],
+                    ["10", "1991", "10 Cruzeiros", "mbc/sob", "Cunho Duplo - Data e linhas", "R$ 20,00"],
+                    ["11", "1992", "500 Cruzeiros", "mbc/sob", "Cunho Marcado - no Reverso", "R$ 30,00"],
+                    ["12", "1992", "500 Cruzeiros", "mbc/sob", "Cunho Marcado - no Reverso, ou seja, com sinais da tartaruga marinha", "R$ 30,00"],
+                    ["13", "1993", "1000 Cruzeiros", "mbc/sob", "Cunho Duplo - Acara e Brasil", "R$ 20,00"],
+                    ["14", "1993", "1000 Cruzeiros", "mbc/sob", "Cunho Duplo - Brasil e Data", "R$ 20,00"],
+                    ["15", "1993", "1000 Cruzeiros", "mbc/sob", "Cunho Duplo - Acara, Brasil e Cruzeiro", "R$ 25,00"],
 
                 ],
 
