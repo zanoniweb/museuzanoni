@@ -11416,6 +11416,12 @@ Embora na época fossem vistas como estragos na moeda, hoje essas peças são ra
     <script type="text/javascript" src="https://www.counter12.com/ad.js?id=10y3691x216zAB7Y"></script>
     </div>
     
+    <br>
+
+    <button id="btn-abrir-cartaz-zanoni" type="button">
+    🖼️ Gerar Cartaz da Exposição
+    </button>
+
 </div>
 
 
@@ -11476,6 +11482,397 @@ Embora na época fossem vistas como estragos na moeda, hoje essas peças são ra
                 img.addEventListener('mouseleave', function() { img.style.opacity = '1'; });
             });
         })();
+
+
+//código para geração de cartaz
+/**
+ * Módulo Gerador de Cartaz - Coleção Numismática Zanoni
+ * Botão estático (sem posição fixa/flutuante), layout editorial similar ao cartaz
+ * de referência, sem quadro de imagem e exporta em JPG ou PDF (A4).
+ */
+(function () {
+    // 1. Carregamento dinâmico das dependências (html2canvas e jsPDF) caso não existam
+    function carregarDependencias() {
+        const libs = [
+            { id: 'lib-html2canvas', src: 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js' },
+            { id: 'lib-jspdf', src: 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js' }
+        ];
+
+        libs.forEach(lib => {
+            if (!document.getElementById(lib.id)) {
+                const script = document.createElement('script');
+                script.id = lib.id;
+                script.src = lib.src;
+                script.async = true;
+                document.head.appendChild(script);
+            }
+        });
+    }
+
+    // 2. CSS Embutido (botão estático + cartaz editorial A4)
+    const cssEmbutido = `
+        #btn-abrir-cartaz-zanoni {
+            position: static;
+            display: inline-block;
+            background-color: #1f1f1f;
+            color: #ffffff;
+            border: 1px solid #b5985a;
+            padding: 10px 18px;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        #btn-abrir-cartaz-zanoni:hover {
+            background-color: #333333;
+        }
+
+        #modal-cartaz-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.82);
+            z-index: 9999;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 24px 16px;
+            overflow-y: auto;
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+        .modal-cartaz-wrapper {
+            background: #262626;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 850px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .controles-cartaz {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        .btn-acao-cartaz {
+            padding: 9px 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #fff;
+        }
+        .btn-jpg { background-color: #28a745; }
+        .btn-jpg:hover { background-color: #218838; }
+        .btn-pdf { background-color: #c0392b; }
+        .btn-pdf:hover { background-color: #a93226; }
+        .btn-fechar { background-color: #6c757d; }
+        .btn-fechar:hover { background-color: #5a6268; }
+
+        /* Cartaz em proporção A4 (794px x 1123px) */
+        #area-impressao-cartaz {
+            width: 794px;
+            min-height: 1123px;
+            background-color: #faf8f5;
+            color: #1e1e1e;
+            padding: 28px;
+            box-sizing: border-box;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+        }
+        .cartaz-moldura-interna {
+            border: 1px solid #c9b584;
+            outline: 3px solid #faf8f5;
+            box-shadow: 0 0 0 1px #c9b584;
+            padding: 26px 34px;
+            min-height: 1067px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .cartaz-topo {
+            text-align: center;
+        }
+        .cartaz-kicker {
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+            color: #8b7339;
+            margin: 0 0 8px 0;
+        }
+        .cartaz-titulo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #181818;
+            margin: 0 auto 10px auto;
+        }
+        .cartaz-divisor {
+            width: 56px;
+            height: 2px;
+            background-color: #b5985a;
+            margin: 0 auto 14px auto;
+        }
+        .cartaz-subtitulo {
+            font-size: 13.5px;
+            line-height: 1.5;
+            color: #4a4a4a;
+            max-width: 640px;
+            margin: 0 auto 22px auto;
+        }
+
+        /* Seção da tabela */
+        .cartaz-secao-titulo {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #8b7339;
+            text-align: center;
+            margin: 0 0 12px 0;
+        }
+        .cartaz-tabela {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 18px;
+            font-size: 12.2px;
+        }
+        .cartaz-tabela thead th {
+            background-color: #1f1f1f;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: left;
+            padding: 8px 12px;
+        }
+        .cartaz-tabela tbody td {
+            padding: 7px 12px;
+            border-bottom: 1px solid #e4dccb;
+            vertical-align: top;
+            line-height: 1.35;
+        }
+        .cartaz-tabela tbody tr:nth-child(even) {
+            background-color: #f3efe6;
+        }
+        .reinado-nome {
+            font-weight: bold;
+            color: #1c1c1c;
+        }
+        .reinado-alcunha {
+            font-style: italic;
+            color: #555555;
+        }
+
+        /* Caixa inferior */
+        .cartaz-rodape-box {
+            border: 1px solid #333333;
+            background-color: #f4efe6;
+            padding: 14px 18px;
+            text-align: center;
+        }
+        .cartaz-acesso-label {
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            color: #333333;
+            margin: 0 0 4px 0;
+        }
+        .cartaz-url {
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+            color: #111111;
+            margin: 0 0 5px 0;
+            word-break: break-all;
+        }
+        .cartaz-rodape-obs {
+            font-size: 11px;
+            color: #555555;
+            margin: 0;
+        }
+    `;
+
+    // 3. HTML do Modal e Cartaz
+    const htmlModalCartaz = `
+        <div id="modal-cartaz-overlay">
+            <div class="modal-cartaz-wrapper">
+                <div class="controles-cartaz">
+                    <button class="btn-acao-cartaz btn-jpg" id="btn-baixar-jpg" type="button">⬇️ Baixar JPG</button>
+                    <button class="btn-acao-cartaz btn-pdf" id="btn-baixar-pdf" type="button">📄 Baixar PDF</button>
+                    <button class="btn-acao-cartaz btn-fechar" id="btn-fechar-cartaz" type="button">✖ Fechar</button>
+                </div>
+
+                <div id="area-impressao-cartaz">
+                    <div class="cartaz-moldura-interna">
+                        <div>
+                            <div class="cartaz-topo">
+                                <p class="cartaz-kicker">Exposição Numismática Virtual • Curadoria Privada</p>
+                                <h1 class="cartaz-titulo">Coleção Numismática Zanoni</h1>
+                                <div class="cartaz-divisor"></div>
+                                <p class="cartaz-subtitulo">
+                                    Preservando a história através dos séculos, do Brasil Colonial até o período Republicano.
+                                    Explore de forma interativa exemplares históricos com registros detalhados de anverso, reverso e contexto de época.
+                                </p>
+                            </div>
+
+                            <p class="cartaz-secao-titulo">Destaques do Acervo Aberto à Visitação</p>
+                            <table class="cartaz-tabela">
+                                <thead>
+                                    <tr>
+                                        <th>Período / Reinado</th>
+                                        <th>Cronologia</th>
+                                        <th>Exemplares em Exposição</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="reinado-nome">D. João V</span> <span class="reinado-alcunha">— O Magnânimo</span></td>
+                                        <td>1715 – 1750</td>
+                                        <td>Cunhagens do Ciclo do Ouro em X Réis, XX Réis e 160 Réis</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="reinado-nome">D. José I</span> <span class="reinado-alcunha">— O Reformador</span></td>
+                                        <td>1750 – 1777</td>
+                                        <td>V Réis, X Réis, XX Réis, XL Réis (com e sem escudete) e 80 Réis</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="reinado-nome">D. Maria I &amp; D. Pedro III</span> <span class="reinado-alcunha">— Reinado Conjunto</span></td>
+                                        <td>1777 – 1786</td>
+                                        <td>X Réis, XX Réis, XL Réis (coroa baixa e alta) e 80 Réis em prata</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="reinado-nome">D. Maria I</span> <span class="reinado-alcunha">— Governo Solo / Regência</span></td>
+                                        <td>1786 – 1805</td>
+                                        <td>X Réis, XX Réis, XL Réis com escudete e recunho de 640 Réis (1800 B)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="reinado-nome">D. João, Príncipe Regente</span></td>
+                                        <td>1799 – 1818</td>
+                                        <td>X Réis, XX Réis, XL Réis, 1 Macuta e 960 Réis em prata (1814 B)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="reinado-nome">D. João VI</span> <span class="reinado-alcunha">— Reino Unido</span></td>
+                                        <td>1818 – 1823</td>
+                                        <td>X Réis, XX Réis, XL Réis e LXXX Réis (Bahia, Rio e Maranhão)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="reinado-nome">D. Pedro I</span> <span class="reinado-alcunha">— Primeiro Imperador</span></td>
+                                        <td>1823 – 1831</td>
+                                        <td>20, 40 e 80 Réis em cobre, carimbos gerais (10, 20, 40) e variantes</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="reinado-nome">D. Pedro II</span> <span class="reinado-alcunha">— Segundo Reinado</span></td>
+                                        <td>1831 – 1889</td>
+                                        <td>Cobre, bronze, níquel (50, 100, 200 Réis), prata (200 a 2000 Réis) e carimbos históricos</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="reinado-nome">Fichas de Consumo &amp; Transição</span></td>
+                                        <td>Séculos XIX – XX</td>
+                                        <td>Fichas de consumo e imigração europeia (transição do trabalho escravo ao assalariado)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="reinado-nome">Período Republicano</span></td>
+                                        <td>Séculos XIX – XXI</td>
+                                        <td>Evolução monetária brasileira e peças representativas de época</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="cartaz-rodape-box">
+                            <p class="cartaz-acesso-label">Acesse Gratuitamente a Exposição Online</p>
+                            <p class="cartaz-url">https://zanoniweb.github.io/museuzanoni/</p>
+                            <p class="cartaz-rodape-obs">Visitação aberta ao público • Catálogo interativo com visualização de anverso e reverso</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // 4. Inicialização e Exportação
+    function inicializar() {
+        carregarDependencias();
+
+        const styleTag = document.createElement('style');
+        styleTag.textContent = cssEmbutido;
+        document.head.appendChild(styleTag);
+
+        // Garante botão estático: usa o que já existe no HTML ou cria um estático no fluxo normal
+        let btnAbrir = document.getElementById('btn-abrir-cartaz-zanoni');
+        if (!btnAbrir) {
+            btnAbrir = document.createElement('button');
+            btnAbrir.id = 'btn-abrir-cartaz-zanoni';
+            btnAbrir.type = 'button';
+            btnAbrir.textContent = '🖼️ Gerar Cartaz da Exposição';
+            document.body.appendChild(btnAbrir);
+        }
+
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML = htmlModalCartaz;
+        document.body.appendChild(modalContainer);
+
+        const overlay = document.getElementById('modal-cartaz-overlay');
+
+        btnAbrir.addEventListener('click', () => {
+            overlay.style.display = 'flex';
+        });
+
+        document.getElementById('btn-fechar-cartaz').addEventListener('click', () => {
+            overlay.style.display = 'none';
+        });
+
+        // Baixar JPG
+        document.getElementById('btn-baixar-jpg').addEventListener('click', async () => {
+            if (typeof html2canvas === 'undefined') {
+                alert('Aguarde o carregamento da biblioteca de imagem e tente novamente.');
+                return;
+            }
+            const area = document.getElementById('area-impressao-cartaz');
+            const canvas = await html2canvas(area, { useCORS: true, scale: 2 });
+            const link = document.createElement('a');
+            link.download = 'cartaz-colecao-numismatica-zanoni.jpg';
+            link.href = canvas.toDataURL('image/jpeg', 0.94);
+            link.click();
+        });
+
+        // Baixar PDF
+        document.getElementById('btn-baixar-pdf').addEventListener('click', async () => {
+            if (typeof html2canvas === 'undefined' || typeof window.jspdf === 'undefined') {
+                alert('Aguarde o carregamento das bibliotecas de PDF e tente novamente.');
+                return;
+            }
+            const { jsPDF } = window.jspdf;
+            const area = document.getElementById('area-impressao-cartaz');
+            const canvas = await html2canvas(area, { useCORS: true, scale: 2 });
+            const imgData = canvas.toDataURL('image/jpeg', 0.95);
+
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+            pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+            pdf.save('cartaz-colecao-numismatica-zanoni.pdf');
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', inicializar);
+    } else {
+        inicializar();
+    }
+})();
+
 
 </script>
 
